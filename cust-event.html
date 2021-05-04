@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title> Homepage </title>
+  <link href="bootstrap.min.css" rel=stylesheet>
+  <script src="bootstrap.min.js"></script>
+  <script src="jquery-3.6.0.min.js"></script>
+  <script src="cust-event.js"></script>
+</head>
+
+<body>
+  <img src="pictures/header-image.png" width=100% />
+  <div>
+    <ul class="nav nav-tabs">
+      <li><a href="cust-home.html">Home</a></li>
+      <li><a href="cust-book.html">Book</a></li>
+      <li class="active"><a href="cust-event.html">Event</a></li>
+      <li><a href="cust-room.html">Study room</a></li>
+      <li class="pull-right"><a href="login.html">Logout</a></li>
+    </ul>
+  </div>
+
+  <form>
+    <select>
+      <option value="name">Event Name</option>
+      <option value="type">Type</option>
+      <option value="topic">Topic</option>
+    </select>
+    <div>
+      <input type="text" name="search-info" />
+      <button type="button" id="cust-event-search-button">Search</button>
+    </div>
+  </form>
+  
+  <tabel id="cust-event-search-result" style="display: none;">
+    <tr>
+      <td>Event Name</td>
+      <td>Type</td>
+      <td>Start Date</td>
+      <td>Stop Date</td>
+      <td>Status</td>
+    </tr><br>
+    <tr>
+      <td>TEST</td>
+      <td>test</td>
+      <td>yesterday</td>
+      <td>tomorrow</td>
+      <td><a href="cust-event-register.html">Available</a></td>
+    </tr>
+  </tabel>
+
+</body>
+</html>
