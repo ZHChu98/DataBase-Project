@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Login </title>
+        <!-- <link id="login" href="login.css" rel="stylesheet" charset="utf-8"> -->
+        <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.1.min.js"></script>
+        <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <p> Create your account </p>
+        <form action="signup.php" method="post">
+            <select name="sptype" id="sctype">
+                <option value="Selecttype">Select</option>
+                <option value="Customer">Customer</option>
+                <option value="Author">Author</option>
+                <option value="Administrator">Administrator</option>
+            </select><br/>
+            <div>
+                <div id=Customer style="display: none;">
+                    <label>Username</label><br>
+                    <input type="text" name="username"><br>
+                    <label>Password</label><br>
+                    <input type="password" name="password"><br>
+                    <label>First name</label><br>
+                    <input type="text" name="Fname"><br>
+                    <label>Last name</label><br>
+                    <input type="text" name="Lname"><br>
+                    <label>Phone</label><br>
+                    <input type="tel" name="telphone"><br>
+                    <label>Email</label><br>
+                    <input type="email" name="email"><br>
+                    <label>ID type</label><br>
+                    <input type="text" name="idtype"><br>
+                    <label>ID number</label><br>
+                    <input type="text" name="idnumber"><br>
+                </div>
+                <div id=Author style="display: none;">
+                    <label>Username</label><br>
+                    <input type="text" name="username"><br>
+                    <label>Password</label><br>
+                    <input type="password" name="password"><br>
+                    <label>First name</label><br>
+                    <input type="text" name="Fname"><br>
+                    <label>Last name</label><br>
+                    <input type="text" name="Lname"><br>
+                    <label>Email</label><br>
+                    <input type="email" name="email"><br>
+                    <label>House number</label><br>
+                    <input type="text" name="house number"><br>
+                    <label>Street</label><br>
+                    <input type="text" name="street"><br>
+                    <label>City</label><br>
+                    <input type="text" name="city"><br>
+                    <label>State</label><br>
+                    <input type="text" name="state"><br>
+                    <label>Country</label><br>
+                    <input type="text" name="country"><br>
+                    <label>ZIP</label><br>
+                    <input type="text" name="zip"><br>
+                </div>
+                <div id=Administrator style="display: none;">
+                    <label>Username</label><br>
+                    <input type="text" name="username"><br>
+                    <label>Password</label><br>
+                    <input type="password" name="password"><br>
+                    <label>Priority</label><br>
+                    <input type="text" name="Priority"><br>
+                </div>
+                <div id=Selecttype style="display: none;">
+                    <label>Please select a type</label><br>
+                </div>
+            </div>
+            <input type="submit" value="submit me!" />
+        </form>
+        <script src="login.js"></script>
+    </body>
+</html>
