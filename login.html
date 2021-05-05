@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <title> Login </title>
+      <link id="login" href="login.css" rel="stylesheet" charset="utf-8">
+      <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+      <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.1.min.js"></script>
+      <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+      <form id="loginform" action="login.php" method="POST">
+        <label>Username </label><br>
+        <input type="text" name="username"><br>
+        <label>Password </label><br>
+        <input type="password" name="password"><br>
+        <input type="submit" class="button" value="Sign in">
+        <p id="success"></p>
+      </form>
+      <p> No account? </p>
+      <a href="signup.html" target="_self"> create an account </a>
+      <script src="login.js"></script>
+
+</html>
