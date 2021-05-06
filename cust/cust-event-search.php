@@ -94,7 +94,7 @@
           if (strtotime($stop_dt)<strtotime($cur_dt)) {
             echo "<td>Closed</td>";
           } else {
-            echo "<td><form name='reg_evt_id'><a type='submit' value='$evt_id'>Register</button></form></td>";
+            echo "<td><form name='reg_evt_id' action='cust-event-reg.php'><a type='submit' value='$evt_id'>Register</button></form></td>";
           }
           echo "</tr>";
         }
