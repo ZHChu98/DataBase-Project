@@ -111,6 +111,7 @@ INSERT INTO ydzc_evt VALUES (21007, 'Crystal Mechanics Future', 'S', STR_TO_DATE
 INSERT INTO ydzc_evt VALUES (21008, 'Flow Mechanics Future', 'S', STR_TO_DATE('28/03/2021', '%d/%m/%Y'), STR_TO_DATE('31/03/2021', '%d/%m/%Y'));
 INSERT INTO ydzc_evt VALUES (21009, 'Structural Mechanics Future', 'S', STR_TO_DATE('28/03/2021', '%d/%m/%Y'), STR_TO_DATE('31/03/2021', '%d/%m/%Y'));
 INSERT INTO ydzc_evt VALUES (21010, 'Engineering Mechanics Future', 'S', STR_TO_DATE('28/03/2021', '%d/%m/%Y'), STR_TO_DATE('31/03/2021', '%d/%m/%Y'));
+INSERT INTO ydzc_evt VALUES (21011, 'How to SURVIVE FINAL', 'E', STR_TO_DATE('15/05/2021', '%d/%m/%Y'), STR_TO_DATE('23/05/2021', '%d/%m/%Y'));
 -- ydzc_exh
 INSERT INTO ydzc_exh VALUES (21001, 2800.00);
 INSERT INTO ydzc_exh VALUES (21002, 5000.00);
