@@ -208,3 +208,9 @@ CREATE TABLE ydzc_resv (
 	FOREIGN KEY (cust_id) REFERENCES ydzc_cust(cust_id),
 	FOREIGN KEY (rmsect_id) REFERENCES ydzc_rmsect(rmsect_id)
 );
+
+CREATE OR REPLACE VIEW ydzc_cust_evt_v AS
+SELECT a.evt_id, a.evt_name, a.evt_type, a.evt_startdt, a.evt_stopdt, b.top_name
+FROM ydzc_evt a, ydzc_evt_top b
+WHERE a.evt_id=b.evt_id;
+
