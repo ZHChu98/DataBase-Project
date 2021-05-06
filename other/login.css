@@ -1,0 +1,19 @@
+.panel {
+    display: inline-block;
+    margin:  .5em;
+    padding:  0; 
+    width:30%;
+}
+.main{
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    width: 1000px;
+    height: 300px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}

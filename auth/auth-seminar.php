@@ -3,20 +3,23 @@
 <head>
   <meta charset="utf-8">
   <title> Seminar </title>
-  <link href="bootstrap.min.css" rel=stylesheet>
-  <script src="bootstrap.min.js"></script>
-  <script src="jquery-3.6.0.min.js"></script>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../bootstrap-table.min.css" rel="stylesheet">
+  <script src="../bootstrap.min.js"></script>
+  <script src="../jquery-3.6.0.min.js"></script>
+  <script src="../bootstrap-table.min.js"></script>
 </head>
 
 <body>
   <header>
-    <img src="pictures/header-image.png" width=100% />
+    <img src="../pictures/header-image.png" width=100% />
   </header>
 
   <div class="container">
     <div class="row">
       <ul class="nav nav-pills">
         <li><a href="auth-home.html">Home</a></li>
+        <li><a href="auth-book.html">Book</a></li>
         <li class="active"><a href="auth-seminar.html">Seminar</a></li>
         <li class="pull-right"><a href="login.html">Logout</a></li>
       </ul>
