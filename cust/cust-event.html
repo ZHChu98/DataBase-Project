@@ -28,40 +28,21 @@
 
   <div class="container">
     <div class="row">
-      <form>
-        <select>
+      <form id="cust-event-search-form" action="cust-event.php" method="post">
+        <select name="search-method">
           <option value="name">Event Name</option>
           <option value="type">Type</option>
           <option value="topic">Topic</option>
         </select>
         <div>
           <input type="text" name="search-info" />
-          <button type="button" id="cust-event-search-button">Search</button>
+          <button type="submit" class="button" id="cust-event-search-button">Search</button>
         </div>
       </form>
     </div>
   </div>
   
-  <div class="container">
-    <div class="row">
-      <tabel id="cust-event-search-result" style="display: none;">
-        <tr>
-          <td>Event Name</td>
-          <td>Type</td>
-          <td>Start Date</td>
-          <td>Stop Date</td>
-          <td>Status</td>
-        </tr><br>
-        <tr>
-          <td>TEST</td>
-          <td>test</td>
-          <td>yesterday</td>
-          <td>tomorrow</td>
-          <td><a href="cust-event-register.html">Available</a></td>
-        </tr>
-      </tabel>
-    </div>
-  </div>
+  
 
   
 
