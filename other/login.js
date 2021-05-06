@@ -21,8 +21,12 @@ function loginsubmit(){
         url: "login.php",
         data: $('#loginform').serialize(),
         success: function(data){
+            alert(JSON.stringify(data));
             if(data[data.length-1]=="1"){
                 var theusername=$("#namerec").val();
+                alert(theusername);
+                var thepassword=$("#passrec").val();
+                alert(thepassword);
                 // document.cookie=theusername;
                 // header("location:index.php"); 
                 setCookieforlogin("welcome!", theusername, 30, "path=/");
@@ -31,7 +35,12 @@ function loginsubmit(){
                 $showsomething = "account doesn't exit or password mismatch!";
                 alert($showsomething);
             } else {
+                var theusername=$("#namerec").val();
+                alert(theusername);
+                var thepassword=$("#passrec").val();
+                alert(thepassword);
                 alert("Both Fields are required");
+                alert(JSON.stringify(data));
             }
         },
         error: function(data){
