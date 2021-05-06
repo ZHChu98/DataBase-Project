@@ -118,6 +118,7 @@ INSERT INTO ydzc_exh VALUES (21002, 5000.00);
 INSERT INTO ydzc_exh VALUES (21003, 2100.50);
 INSERT INTO ydzc_exh VALUES (21004, 2000.00);
 INSERT INTO ydzc_exh VALUES (21005, 1500.00);
+INSERT INTO ydzc_exh VALUES (21011, 6666.66);
 -- ydzc_sem
 INSERT INTO ydzc_sem VALUES (21006, 1500.00);
 INSERT INTO ydzc_sem VALUES (21007, 2000.00);
@@ -139,6 +140,8 @@ INSERT INTO ydzc_evt_top VALUES (21007, 'Science');
 INSERT INTO ydzc_evt_top VALUES (21008, 'Science');
 INSERT INTO ydzc_evt_top VALUES (21009, 'Science');
 INSERT INTO ydzc_evt_top VALUES (21010, 'Science');
+INSERT INTO ydzc_evt_top VALUES (21011, 'Arts');
+INSERT INTO ydzc_evt_top VALUES (21011, 'Children');
 -- ydzc_reg
 INSERT INTO ydzc_reg VALUES (20211001, 21001, 1);
 INSERT INTO ydzc_reg VALUES (20211002, 21001, 2);
