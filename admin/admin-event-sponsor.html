@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title> Sponsor Info </title>
   <link href="../bootstrap.min.css" rel=stylesheet>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
   <script src="../jquery.js"></script>
   <script src="../bootstrap-dropdown.js"></script>
   <script src="../application.js"></script>
@@ -52,5 +53,41 @@
       </ul>
     </div>
   </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <h2>Find all customer</h2>
+        <div class="fakeimg"><img src="../pictures/emcu.png" width=100% /></div>
+        <h3>Manage Customer</h3>
+        <p>For CUSD</p>
+        <ul class="nav nav-pills nav-stacked">
+          <li class="active"><a href="#">Search Information</a></li>
+          <li><a href="#">Edit Information</a></li>
+          <li><a href="#">Delete Information</a></li>
+        </ul>
+        <hr class="hidden-sm hidden-md hidden-lg">
+      </div>
+      <div class="col-sm-8">
+        <form id="searchbookform" action="cust-book.php" method="post">
+          <select class="bootstrap-select" data-style="btn-info" name="searchas" >
+            <optgroup label="Picnic">
+              <option value="id">ISBN</option>
+              <option value="title">Title</option>
+              <option value="author">Author</option>
+              <option value="topic">Topic</option>
+            </optgroup>
+          </select>
+          <div class="input-group">
+            <input type="text" class="form-control" name="search-info" />
+            <div class="input-group-btn">
+              <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
