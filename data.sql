@@ -1,12 +1,12 @@
 -- ydzc_auth
-INSERT INTO ydzc_auth VALUES(NULL, 'Zeke', 'Yeager', 'zeke@nyu.edu', '3#', 'West Road', 'NewYork', 'NY', 'US', 10001);
-INSERT INTO ydzc_auth VALUES(NULL, 'Bertolt', 'Hoover', 'bertolt@nyu.edu', '81#', 'North Road', 'Phoenix', 'AZ', 'US', 10021);
-INSERT INTO ydzc_auth VALUES(NULL, 'Annie', 'Leonhart', 'annie@nyu.edu', '21#', 'South Road', 'Montgomery', 'AL', 'US', 10081);
-INSERT INTO ydzc_auth VALUES(NULL, 'Marcel', 'Galliard', 'marcel@nyu.edu', '33#', 'West Road', 'Denver', 'CO', 'US', 10011);
-INSERT INTO ydzc_auth VALUES(NULL, 'Porco', 'Galliard', 'porco@nyu.edu', '22#', 'West Road', 'Los Angeles', 'CA', 'US', 10026);
-INSERT INTO ydzc_auth VALUES(NULL, 'Pieck', 'Finger', 'pieck@nyu.edu', '88#', 'West Road', 'Chicago', 'IL', 'US', 10024);
-INSERT INTO ydzc_auth VALUES(NULL, 'Gabi', 'Braun', 'gabi@nyu.edu', '72#', 'West Road', 'Boston', 'MA', 'US', 10052);
-INSERT INTO ydzc_auth VALUES(NULL, 'Falco', 'Grice', 'falco@nyu.edu', '90#', 'West Road', 'Detroit', 'MI', 'US', 10073);
+INSERT INTO ydzc_auth VALUES (NULL, 'Zeke', 'Yeager', 'zeke@nyu.edu', '3', 'West Road', 'NewYork', 'NY', 'US', 10001);
+INSERT INTO ydzc_auth VALUES (NULL, 'Bertolt', 'Hoover', 'bertolt@nyu.edu', '81', 'North Road', 'Phoenix', 'AZ', 'US', 10021);
+INSERT INTO ydzc_auth VALUES (NULL, 'Annie', 'Leonhart', 'annie@nyu.edu', '21', 'South Road', 'Montgomery', 'AL', 'US', 10081);
+INSERT INTO ydzc_auth VALUES (NULL, 'Marcel', 'Galliard', 'marcel@nyu.edu', '33', 'West Road', 'Denver', 'CO', 'US', 10011);
+INSERT INTO ydzc_auth VALUES (NULL, 'Porco', 'Galliard', 'porco@nyu.edu', '22', 'West Road', 'Los Angeles', 'CA', 'US', 10026);
+INSERT INTO ydzc_auth VALUES (NULL, 'Pieck', 'Finger', 'pieck@nyu.edu', '88', 'West Road', 'Chicago', 'IL', 'US', 10024);
+INSERT INTO ydzc_auth VALUES (NULL, 'Gabi', 'Braun', 'gabi@nyu.edu', '72', 'West Road', 'Boston', 'MA', 'US', 10052);
+INSERT INTO ydzc_auth VALUES (NULL, 'Falco', 'Grice', 'falco@nyu.edu', '90', 'West Road', 'Detroit', 'MI', 'US', 10073);
 -- ydzc_bk
 INSERT INTO ydzc_bk VALUES (9782222211111, 'Western Culture');
 INSERT INTO ydzc_bk VALUES (9783333322222, 'Le Petit Prince');
@@ -111,7 +111,7 @@ INSERT INTO ydzc_evt VALUES (21007, 'Crystal Mechanics Future', 'S', STR_TO_DATE
 INSERT INTO ydzc_evt VALUES (21008, 'Flow Mechanics Future', 'S', STR_TO_DATE('28/03/2021', '%d/%m/%Y'), STR_TO_DATE('31/03/2021', '%d/%m/%Y'));
 INSERT INTO ydzc_evt VALUES (21009, 'Structural Mechanics Future', 'S', STR_TO_DATE('28/03/2021', '%d/%m/%Y'), STR_TO_DATE('31/03/2021', '%d/%m/%Y'));
 INSERT INTO ydzc_evt VALUES (21010, 'Engineering Mechanics Future', 'S', STR_TO_DATE('28/03/2021', '%d/%m/%Y'), STR_TO_DATE('31/03/2021', '%d/%m/%Y'));
-INSERT INTO ydzc_evt VALUES (21011, 'How to SURVIVE FINAL', 'E', STR_TO_DATE('15/05/2021', '%d/%m/%Y'), STR_TO_DATE('23/05/2021', '%d/%m/%Y'));
+INSERT INTO ydzc_evt VALUES (21011, 'How to SURVIVE THE FINAL', 'E', STR_TO_DATE('15/05/2021', '%d/%m/%Y'), STR_TO_DATE('23/05/2021', '%d/%m/%Y'));
 -- ydzc_exh
 INSERT INTO ydzc_exh VALUES (21001, 2800.00);
 INSERT INTO ydzc_exh VALUES (21002, 5000.00);

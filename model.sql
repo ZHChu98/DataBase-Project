@@ -210,7 +210,17 @@ CREATE TABLE ydzc_resv (
 );
 
 CREATE OR REPLACE VIEW ydzc_cust_evt_v AS
-SELECT a.evt_id, a.evt_name, a.evt_type, a.evt_startdt, a.evt_stopdt, b.top_name
+SELECT a.evt_id, a.evt_name, a.evt_startdt, a.evt_stopdt, b.top_name
 FROM ydzc_evt a, ydzc_evt_top b
-WHERE a.evt_id=b.evt_id;
+WHERE a.evt_id=b.evt_id AND a.evt_type='E';
+
+CREATE OR REPLACE VIEW ydzc_auth_sem_v AS
+SELECT b.evt_id, b.evt_name, b.evt_startdt, b.evt_stopdt, c.invt_id, c.auth_id
+FROM ydzc_sem a, ydzc_evt b, ydzc_invt c
+WHERE a.evt_id=b.evt_id AND a.evt_id=c.evt_id;
+
+CREATE OR REPLACE VIEW ydzc_auth_bk_v AS
+SELECT a.bk_isbn, a.bk_title, b.auth_id
+FROM ydzc_bk a, ydzc_auth b, ydzc_bk_auth c
+WHERE a.bk_isbn=c.bk_isbn AND b.auth_id=c.auth_id;
 

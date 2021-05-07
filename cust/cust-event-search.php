@@ -1,18 +1,19 @@
 <?php
-  $method = $_POST["search-method"];
-  $keyword = $_POST["search-info"];
-  $connection = mysqli_connect("localhost", "root", "");
-  if (!$connection) { die("Could not connect: ".mysqli_connect_error()); }
-  mysqli_select_db($connection, "project");
-  if ($method == "name") {
-    $sql = "SELECT DISTINCT evt_name, evt_id, evt_type, evt_startdt, evt_stopdt, top_name FROM ydzc_cust_evt_v WHERE evt_name like '%$keyword%'";
-  } elseif ($method == "type") {
-    $sql = "SELECT DISTINCT evt_name, evt_id, evt_type, evt_startdt, evt_stopdt, top_name FROM ydzc_cust_evt_v WHERE evt_type='$keyword'";
-  } elseif ($method == "topic") {
-    $sql = "SELECT DISTINCT a.evt_name, a.evt_id, a.evt_type, a.evt_startdt, a.evt_stopdt, a.top_name FROM ydzc_cust_evt_v a, ydzc_cust_evt_v b WHERE b.top_name='$keyword' AND a.evt_id=b.evt_id";
-  }
+$method = $_POST["search-method"];
+$keyword = $_POST["search-info"];
+$connection = mysqli_connect("localhost", "root", "");
+if (!$connection) { die("Could not connect: ".mysqli_connect_error()); }
+mysqli_select_db($connection, "project");
 
-  $result = mysqli_query($connection, $sql);
+if ($method == "name") {
+$sql = "SELECT DISTINCT evt_name, evt_id, evt_type, evt_startdt, evt_stopdt, top_name FROM ydzc_cust_evt_v WHERE evt_name like '%$keyword%'";
+} elseif ($method == "type") {
+$sql = "SELECT DISTINCT evt_name, evt_id, evt_type, evt_startdt, evt_stopdt, top_name FROM ydzc_cust_evt_v WHERE evt_type='$keyword'";
+} elseif ($method == "topic") {
+$sql = "SELECT DISTINCT a.evt_name, a.evt_id, a.evt_type, a.evt_startdt, a.evt_stopdt, a.top_name FROM ydzc_cust_evt_v a, ydzc_cust_evt_v b WHERE b.top_name='$keyword' AND a.evt_id=b.evt_id";
+}
+
+$result = mysqli_query($connection, $sql);
 ?>
 
 <!DOCTYPE html>
