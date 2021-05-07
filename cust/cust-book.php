@@ -57,7 +57,6 @@ $result = mysqli_query($connection, $sql);
                 <input type="hidden" name="cus_ID" id="cus_ID_id" value="" >
                 <input type="hidden" name="bck_ID" id="bck_ID_id" value="">
             </form>
-            <p></p>
         </div>
 
         <div class="container">
@@ -115,7 +114,7 @@ $result = mysqli_query($connection, $sql);
                     if($row["BKCPY_STAT"]=="A"){
                         echo "<td><a id='rantclickid'>Rant</a></td></tr>";
                     } else {
-                        echo "<td>Borrowed</td></tr>";
+                        echo "<td>Borrowed</td></tssr>";
                     }
                     $row=mysqli_fetch_assoc($result);
                     }
