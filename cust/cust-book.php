@@ -102,7 +102,7 @@ if (isset($_POST["search-meth"]) && isset($_POST["search-info"])) {
           do {
             $copy_str .= "<tr><td>{$row3['bkcpy_id']}</td>";
             if ($row3['bkcpy_stat']=="Y") {
-              $copy_str .= "<td><form action='cust-book-borrow.php' method='post'><button type='submit' class='btn btn-primary' name='bk_isbn' value='$isbn'>Available</button></form></td></tr>";
+              $copy_str .= "<td><form action='cust-book-borrow.php' method='post'><button type='submit' class='btn btn-primary' name='bkcpy_id' value='{$row3['bkcpy_id']}'>Available</button></form></td></tr>";
             } else {
               $copy_str .= "<td>Unavailable</td></tr>";
             }

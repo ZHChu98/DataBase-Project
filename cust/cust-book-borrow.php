@@ -2,9 +2,9 @@
 $connection = mysqli_connect("localhost", "root", "");
 if (!$connection) { die("Could not connect: ".mysqli_connect_error()); }
 mysqli_select_db($connection, "ydzc_rtl");
-$bk_isbn = $_POST['bk_isbn'];
+$bkcpy_id = $_POST["bkcpy_id"];
 $user_id = $_COOKIE["user"];
-$sql = "SELECT bk_isbn, bk_title, bkcpy_id FROM ydzc_cust_bk_v WHERE bk_isbn=$bk_isbn";
+$sql = "SELECT DISTINCT bk_isbn, bk_title, bkcpy_id FROM ydzc_cust_bk_v WHERE bkcpy_id=$bkcpy_id";
 $result = mysqli_query($connection, $sql);
 ?>
 
@@ -56,7 +56,7 @@ $result = mysqli_query($connection, $sql);
 
   <div class="container">
     <div class="row">
-      <form action="" method="post">
+      <form action="cust-book-borrow-confirm" method="post">
         <table class="table table-striped">
           <?php
           $row = mysqli_fetch_assoc($result);
@@ -69,11 +69,10 @@ $result = mysqli_query($connection, $sql);
         </table>
 
         <div>
-          <button type="submit" class="btn btn-primary">Comfirm</button>
+          <button type="text submit" class="btn btn-primary" name="bkcpy_id" value="<?php echo $bkcpy_id ?>">Comfirm</button>
           <a type="button" class="btn btn-primary" href="cust-book.php">Back</a>
         </div>
       </form>
-
     </div>
   </div>
 
