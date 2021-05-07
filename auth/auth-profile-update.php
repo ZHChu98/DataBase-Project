@@ -2,7 +2,7 @@
 $connection = mysqli_connect("localhost", "root", "");
 if (!$connection) { die("Could not connect: ".mysqli_connect_error()); }
 mysqli_select_db($connection, "ydzc_rtl");
-$user_id = $_COOKIE["user_id"];
+$user_id = $_COOKIE["user"];
 $fname = $_POST["fname"];
 $lname = $_POST['lname'];
 $email = $_POST['email'];
