@@ -1,12 +1,12 @@
 -- ydzc_auth
-INSERT INTO ydzc_auth VALUES (NULL, 'Zeke', 'Yeager', 'zeke@nyu.edu', '3', 'West Road', 'NewYork', 'NY', 'US', 10001);
-INSERT INTO ydzc_auth VALUES (NULL, 'Bertolt', 'Hoover', 'bertolt@nyu.edu', '81', 'North Road', 'Phoenix', 'AZ', 'US', 10021);
-INSERT INTO ydzc_auth VALUES (NULL, 'Annie', 'Leonhart', 'annie@nyu.edu', '21', 'South Road', 'Montgomery', 'AL', 'US', 10081);
-INSERT INTO ydzc_auth VALUES (NULL, 'Marcel', 'Galliard', 'marcel@nyu.edu', '33', 'West Road', 'Denver', 'CO', 'US', 10011);
-INSERT INTO ydzc_auth VALUES (NULL, 'Porco', 'Galliard', 'porco@nyu.edu', '22', 'West Road', 'Los Angeles', 'CA', 'US', 10026);
-INSERT INTO ydzc_auth VALUES (NULL, 'Pieck', 'Finger', 'pieck@nyu.edu', '88', 'West Road', 'Chicago', 'IL', 'US', 10024);
-INSERT INTO ydzc_auth VALUES (NULL, 'Gabi', 'Braun', 'gabi@nyu.edu', '72', 'West Road', 'Boston', 'MA', 'US', 10052);
-INSERT INTO ydzc_auth VALUES (NULL, 'Falco', 'Grice', 'falco@nyu.edu', '90', 'West Road', 'Detroit', 'MI', 'US', 10073);
+INSERT INTO ydzc_auth VALUES (NULL, '356A192B7913B04C54574D18C28D46E6395428AB', 'Zeke', 'Yeager', 'zeke@nyu.edu', '3', 'West Road', 'NewYork', 'NY', 'US', 10001);
+INSERT INTO ydzc_auth VALUES (NULL, 'DA4B9237BACCCDF19C0760CAB7AEC4A8359010B0', 'Bertolt', 'Hoover', 'bertolt@nyu.edu', '81', 'North Road', 'Phoenix', 'AZ', 'US', 10021);
+INSERT INTO ydzc_auth VALUES (NULL, '77DE68DAECD823BABBB58EDB1C8E14D7106E83BB', 'Annie', 'Leonhart', 'annie@nyu.edu', '21', 'South Road', 'Montgomery', 'AL', 'US', 10081);
+INSERT INTO ydzc_auth VALUES (NULL, '1B6453892473A467D07372D45EB05ABC2031647A', 'Marcel', 'Galliard', 'marcel@nyu.edu', '33', 'West Road', 'Denver', 'CO', 'US', 10011);
+INSERT INTO ydzc_auth VALUES (NULL, 'AC3478D69A3C81FA62E60F5C3696165A4E5E6AC4', 'Porco', 'Galliard', 'porco@nyu.edu', '22', 'West Road', 'Los Angeles', 'CA', 'US', 10026);
+INSERT INTO ydzc_auth VALUES (NULL, 'C1DFD96EEA8CC2B62785275BCA38AC261256E278', 'Pieck', 'Finger', 'pieck@nyu.edu', '88', 'West Road', 'Chicago', 'IL', 'US', 10024);
+INSERT INTO ydzc_auth VALUES (NULL, '902BA3CDA1883801594B6E1B452790CC53948FDA', 'Gabi', 'Braun', 'gabi@nyu.edu', '72', 'West Road', 'Boston', 'MA', 'US', 10052);
+INSERT INTO ydzc_auth VALUES (NULL, 'FE5DBBCEA5CE7E2988B8C69BCFDFDE8904AABC1F', 'Falco', 'Grice', 'falco@nyu.edu', '90', 'West Road', 'Detroit', 'MI', 'US', 10073);
 -- ydzc_bk
 INSERT INTO ydzc_bk VALUES (9782222211111, 'Western Culture');
 INSERT INTO ydzc_bk VALUES (9783333322222, 'Le Petit Prince');
@@ -60,15 +60,15 @@ INSERT INTO ydzc_bkcpy VALUES (NULL, 'Y', 9788888877777);
 INSERT INTO ydzc_bkcpy VALUES (NULL, 'Y', 9788888877777);
 INSERT INTO ydzc_bkcpy VALUES (NULL, 'Y', 9789999988888);
 -- ydzc_cust
-INSERT INTO ydzc_cust VALUES (NULL, 'Eren', 'Yeager', 2129981211, 'eren@nyu.edu', 'S', 437625001);
-INSERT INTO ydzc_cust  VALUES (NULL, 'Mikasa', 'Ackerman', 2129981212, 'mikasa@nyu.edu', 'D', 437625002);
-INSERT INTO ydzc_cust VALUES (NULL, 'Armin', 'Arlert', 2129981213, 'armin@nyu.edu', 'S', 437625003);
-INSERT INTO ydzc_cust VALUES (NULL, 'Reiner', 'Braun', 2129981214, 'reiner@nyu.edu', 'P', 437625004);
-INSERT INTO ydzc_cust VALUES (NULL, 'Jean', 'Kirstein', 2129981215, 'jean@nyu.edu', 'D', 437625005);
-INSERT INTO ydzc_cust VALUES (NULL, 'Marco', 'Bott', 2129981216, 'marco@nyu.edu', 'S', 437625006);
-INSERT INTO ydzc_cust VALUES (NULL, 'Connie', 'Springer', 2129981217, 'connie@nyu.edu', 'P', 437625007);
-INSERT INTO ydzc_cust VALUES (NULL, 'Sasha', 'Blouse', 2129981218, 'sasha@nyu.edu', 'P', 437625008);
-INSERT INTO ydzc_cust VALUES (NULL, 'Historia', 'Reiss', 2129981219, 'historia@nyu.edu', 'D', 437625009);
+INSERT INTO ydzc_cust VALUES (NULL, '356A192B7913B04C54574D18C28D46E6395428AB', 'Eren', 'Yeager', 2129981211, 'eren@nyu.edu', 'S', 437625001);
+INSERT INTO ydzc_cust  VALUES (NULL, 'DA4B9237BACCCDF19C0760CAB7AEC4A8359010B0', 'Mikasa', 'Ackerman', 2129981212, 'mikasa@nyu.edu', 'D', 437625002);
+INSERT INTO ydzc_cust VALUES (NULL, '77DE68DAECD823BABBB58EDB1C8E14D7106E83BB', 'Armin', 'Arlert', 2129981213, 'armin@nyu.edu', 'S', 437625003);
+INSERT INTO ydzc_cust VALUES (NULL, '1B6453892473A467D07372D45EB05ABC2031647A', 'Reiner', 'Braun', 2129981214, 'reiner@nyu.edu', 'P', 437625004);
+INSERT INTO ydzc_cust VALUES (NULL, 'AC3478D69A3C81FA62E60F5C3696165A4E5E6AC4', 'Jean', 'Kirstein', 2129981215, 'jean@nyu.edu', 'D', 437625005);
+INSERT INTO ydzc_cust VALUES (NULL, 'C1DFD96EEA8CC2B62785275BCA38AC261256E278', 'Marco', 'Bott', 2129981216, 'marco@nyu.edu', 'S', 437625006);
+INSERT INTO ydzc_cust VALUES (NULL, '902BA3CDA1883801594B6E1B452790CC53948FDA', 'Connie', 'Springer', 2129981217, 'connie@nyu.edu', 'P', 437625007);
+INSERT INTO ydzc_cust VALUES (NULL, 'FE5DBBCEA5CE7E2988B8C69BCFDFDE8904AABC1F', 'Sasha', 'Blouse', 2129981218, 'sasha@nyu.edu', 'P', 437625008);
+INSERT INTO ydzc_cust VALUES (NULL, '0ADE7C2CF97F75D009975F4D720D1FA6C19F4897', 'Historia', 'Reiss', 2129981219, 'historia@nyu.edu', 'D', 437625009);
 -- ydzc_rent
 INSERT INTO ydzc_rent VALUES (10000001, 'R', STR_TO_DATE('01/02/2021', '%d/%m/%Y'), STR_TO_DATE('08/02/2021', '%d/%m/%Y'), STR_TO_DATE('08/02/2021', '%d/%m/%Y'), 4, 3);
 INSERT INTO ydzc_rent VALUES (10000002, 'R', STR_TO_DATE('01/02/2021', '%d/%m/%Y'), STR_TO_DATE('15/02/2021', '%d/%m/%Y'), STR_TO_DATE('06/02/2021', '%d/%m/%Y'), 6, 2);
@@ -220,3 +220,7 @@ INSERT INTO ydzc_resv VALUES (5, 6);
 INSERT INTO ydzc_resv VALUES (7, 6);
 INSERT INTO ydzc_resv VALUES (8, 6);
 INSERT INTO ydzc_resv VALUES (9, 6);
+
+-- ydzc_admin
+INSERT INTO ydzc_admin VALUES (NULL, '356A192B7913B04C54574D18C28D46E6395428AB');
+INSERT INTO ydzc_admin VALUES (NULL, 'DA4B9237BACCCDF19C0760CAB7AEC4A8359010B0');
