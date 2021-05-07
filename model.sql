@@ -224,3 +224,7 @@ SELECT a.bk_isbn, a.bk_title, b.auth_id
 FROM ydzc_bk a, ydzc_auth b, ydzc_bk_auth c
 WHERE a.bk_isbn=c.bk_isbn AND b.auth_id=c.auth_id;
 
+CREATE OR REPLACE VIEW ydzc_cust_bk_v AS
+SELECT a.bk_isbn, a.bk_title, b.auth_fname, b.auth_lname, d.top_name, f.bkcpy_id, f.bkcpy_stat
+FROM ydzc_bk a, ydzc_auth b, ydzc_bk_auth c, ydzc_top d, ydzc_bk_top e, ydzc_bkcpy f
+WHERE a.bk_isbn=c.bk_isbn AND b.auth_id=c.auth_id AND a.bk_isbn=e.bk_isbn AND d.top_name=e.top_name AND a.bk_isbn=f.bk_isbn;

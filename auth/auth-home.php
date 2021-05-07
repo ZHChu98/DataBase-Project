@@ -2,7 +2,7 @@
 $connection = mysqli_connect("localhost", "root", "");
 if (!$connection) { die("Could not connect: ".mysqli_connect_error()); }
 mysqli_select_db($connection, "ydzc_rtl");
-$user_id = $_COOKIE["user_id"];
+$user_id = $_COOKIE["user"];
 $sql = "SELECT * FROM ydzc_auth WHERE auth_id=$user_id";
 $result = mysqli_query($connection, $sql);
 ?>
@@ -14,8 +14,8 @@ $result = mysqli_query($connection, $sql);
   <title> Homepage </title>
   <link href="../bootstrap.min.css" rel="stylesheet">
   <link href="../bootstrap-table.min.css" rel="stylesheet">
-  <script src="../bootstrap.min.js"></script>
   <script src="../jquery-3.6.0.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
   <script src="../bootstrap-table.min.js"></script>
 </head>
 
@@ -30,7 +30,7 @@ $result = mysqli_query($connection, $sql);
         <li class="active"><a href="auth-home.php">Home</a></li>
         <li><a href="auth-book.php">Book</a></li>
         <li><a href="auth-seminar.php">Seminar</a></li>
-        <li class="pull-right"><a href="login.html">Logout</a></li>
+        <li class="pull-right"><a href="../other/login.html">Logout</a></li>
       </ul>
     </div>
   </div>
