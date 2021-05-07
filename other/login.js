@@ -13,6 +13,7 @@ function setCookieforlogin(cname,cvalue,exdays,path)
   d.setTime(d.getTime()+(exdays*24*60*60*1000));
   var expires = "expires="+d.toGMTString();
   document.cookie = cname + "=" + cvalue + "; " + path + "; "+ expires;
+  window.location.href = "../cust/cust-home.html";
 }
 
 function loginsubmit(){
@@ -28,7 +29,7 @@ function loginsubmit(){
                 //var thepassword=$("#passrec").val();
                 //alert(thepassword);
                 setCookieforlogin("welcome", theusername, 30, "path=/");
-                window.location.href = "../cust/cust-home.html";
+                window.location.href = "../cust/cust-home.html?theusername="+theusername;
             } else if(data[data.length-1]=="0"){
                 $showsomething = "account doesn't exit or password mismatch!";
                 alert($showsomething);
