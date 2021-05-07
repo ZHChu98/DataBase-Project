@@ -1,3 +1,13 @@
+<?php
+$connection = mysqli_connect("localhost", "root", "");
+if (!$connection){
+  die('Could not connect: '.mysqli_connect_error());
+}
+mysqli_select_db($connection, "ydzc_rtl");
+$sql = "SELECT DISTINCT * FROM ydzc_cust";
+$result = mysqli_query($connection, $sql);
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +22,7 @@
 
 <body>
   <header>
-    <img src="../pictures/header-image.png" width=100% />
+    <img src="../pictures/header-image.png" width=100%/>
   </header>
   
   <div class="container">
@@ -56,40 +66,24 @@
   
   <div class="container">
     <div class="row">
-      <div class="col-sm-4">
-        <h2><a href="admin-cust-showall.php">Find all customer</a></h2>
-        <div class="fakeimg"><img src="../pictures/emcu.png" width=100% /></div>
-        <h3>Manage Customer</h3>
-        <p>For CUSD</p>
-        <ul class="nav nav-pills nav-stacked">
-          <li class="active"><a href="#">Search Information</a></li>
-          <li><a href="#">Edit Information</a></li>
-          <li><a href="#">Delete Information</a></li>
-        </ul>
-        <hr class="hidden-sm hidden-md hidden-lg">
-      </div>
-      <div class="col-sm-8">
-        <form id="searchbookform" action="cust-book.php" method="post">
-          <select class="bootstrap-select" data-style="btn-info" name="searchas" >
-            <optgroup label="Picnic">
-              <option value="id">ISBN</option>
-              <option value="title">Title</option>
-              <option value="author">Author</option>
-              <option value="topic">Topic</option>
-            </optgroup>
-          </select>
-          <div class="input-group">
-            <input type="text" class="form-control" name="search-info" />
-            <div class="input-group-btn">
-              <button type="submit" class="btn btn-primary">Search</button>
-            </div>
-          </div>
-        </form>
-      </div>
+      <table class="table table-striped">
+        <?php
+        echo "<tr><td>ID</td><td>firstname</td><td>lastname</td><td>phone</td><td>email</td><td>IDtype</td><td>IDNO</td></tr>";
+        $row=mysqli_fetch_assoc($result);
+        while ($row) {
+        echo"<tr><td>{$row["CUST_ID"]}</td>";
+        echo "<td>{$row["CUST_FNAME"]}</td>";
+        echo "<td>{$row["CUST_LNAME"]}</td>";
+        echo "<td>{$row["CUST_PHONE"]}</td>";
+        echo "<td>{$row["CUST_EMAIL"]}</td>";
+        echo "<td>{$row["CUST_IDTYPE"]}</td>";
+        echo "<td>{$row["CUST_IDNO"]}</td></tr>";
+        $row=mysqli_fetch_assoc($result);
+        }
+        ?>
+      </table>
     </div>
   </div>
-
   
-
 </body>
 </html>

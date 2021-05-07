@@ -1,23 +1,28 @@
 <?php
-$connection = mysqli_connect("localhost", "root", "");
-if (!$connection) { die("Could not connect: ".mysqli_connect_error()); }
-mysqli_select_db($connection, 'ydzc_rtl');
-
-$username = $_POST["username"];
-$password = $_POST["password"];
-
-$user_type = $username[0];
-$user_id = substr($username, 1);
-
-$expire=time()+60*60*24*30;
-setcookie("user_type", $user_type, $expire, "/");
-setcookie("user_id", $user_id, $expire, "/");
-
-if ($user_type == "C") {
-    header("Location: ../cust/cust-home.html");
-} elseif ($user_type == "A") {
-    header("Location: ../auth/auth-home.php");
-} elseif ($user_type == "E") {
-    header("Location: ../admin/admin-home.html");
-}
+// if(isset($_COOKIE["cookietype"]))
+// {
+//  header("location:../cust/cust-home.html");
+// }
+// if(isset($_POST["loginbutton"])){
+    if(empty($_POST["username"]) || empty($_POST["password"]))
+    {
+       echo("Both Fields are required");
+    }
+   else {
+   echo $_POST;
+   $username = $_POST['username'];
+   $password = $_POST['password'];
+   echo $username;
+   $connection = mysqli_connect("localhost", "root", "");
+   $DestinationPage = "cust-home.html";
+   
+   if (!$connection){
+       die('Could not connect: '.mysqli_connect_error());
+   } 
+   mysqli_select_db($connection, 'test2');
+   $sql = "SELECT * from people WHERE ID='$username'";
+   $hascus = mysqli_query($connection, $sql);
+   $num = mysqli_num_rows($hascus);
+   echo $num;
+   }
 ?>
