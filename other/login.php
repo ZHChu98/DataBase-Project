@@ -14,8 +14,6 @@
    $password = $_POST['password'];
    echo $username;
    $connection = mysqli_connect("localhost", "root", "");
-   $DestinationPage = "cust-home.html";
-   
    if (!$connection){
        die('Could not connect: '.mysqli_connect_error());
    } 
