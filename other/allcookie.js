@@ -16,7 +16,7 @@ function getCookie(cname){
 	return "";
 }
 function checkCookie(){
-	var user=getCookie("welcome!");
+	var user=getCookie("welcome");
 	if (user!=""){
 		alert("welcome " + user + " !");
 	}

@@ -12,7 +12,8 @@ function setCookieforlogin(cname,cvalue,exdays,path)
   var d = new Date();
   d.setTime(d.getTime()+(exdays*24*60*60*1000));
   var expires = "expires="+d.toGMTString();
-  document.cookie = cname + "=" + cvalue + "; " + path + "; "+ expires;;
+  document.cookie = cname + "=" + cvalue + "; " + path + "; "+ expires;
+  window.location.href = "../cust/cust-home.html";
 }
 
 function loginsubmit(){
@@ -27,10 +28,8 @@ function loginsubmit(){
                 //alert(theusername);
                 //var thepassword=$("#passrec").val();
                 //alert(thepassword);
-                // document.cookie=theusername;
-                // header("location:index.php"); 
-                setCookieforlogin("welcome!", theusername, 30, "path=/");
-                window.location.href = "../cust/cust-home.html";
+                setCookieforlogin("welcome", theusername, 30, "path=/");
+                window.location.href = "../cust/cust-home.html?theusername="+theusername;
             } else if(data[data.length-1]=="0"){
                 $showsomething = "account doesn't exit or password mismatch!";
                 alert($showsomething);

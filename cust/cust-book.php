@@ -6,18 +6,18 @@ if (!$connection){
 mysqli_select_db($connection, "test2");
 $searchas_real = $_POST['searchas'];
 $keyword = $_POST["search-info"];
-if($searchas_real == "id") {
-    $sql = "SELECT * from people where id like '%$keyword%'";
-}
-// if ($searchas_real == "id"){
-//     $sql = "SELECT DISTINCT bk_isbn, bk_title, auth_fname, auth_lname, bkcpy_id, bkcpy_stat FROM ydzc_cust_book_v WHERE bk_isbn like '%$keyword%'";
-// } else if ($searchas_real == "title"){
-//     $sql = "SELECT DISTINCT bk_isbn, bk_title, auth_fname, auth_lname, bkcpy_id, bkcpy_stat FROM ydzc_cust_book_v WHERE bk_title like '%$keyword%'";
-// } else if ($searchas_real == "anthor") {
-//     $sql = "SELECT DISTINCT bk_isbn, bk_title, auth_fname, auth_lname, bkcpy_id, bkcpy_stat FROM ydzc_cust_book_v WHERE  like '%$keyword%'";
-// } else {
-//     $sql = "SELECT DISTINCT bk_isbn, bk_title, auth_fname, auth_lname, bkcpy_id, bkcpy_stat FROM ydzc_cust_book_v WHERE top_name like '%$keyword%'";
+// if($searchas_real == "id") {
+//     $sql = "SELECT * from people where id like '%$keyword%'";
 // }
+if ($searchas_real == "id"){
+    $sql = "SELECT DISTINCT bk_isbn, bk_title, auth_fname, auth_lname, bkcpy_id, bkcpy_stat FROM ydzc_cust_book_v WHERE bk_isbn like '%$keyword%'";
+} else if ($searchas_real == "title"){
+    $sql = "SELECT DISTINCT bk_isbn, bk_title, auth_fname, auth_lname, bkcpy_id, bkcpy_stat FROM ydzc_cust_book_v WHERE bk_title like '%$keyword%'";
+} else if ($searchas_real == "anthor") {
+    $sql = "SELECT DISTINCT bk_isbn, bk_title, auth_fname, auth_lname, bkcpy_id, bkcpy_stat FROM ydzc_cust_book_v WHERE  like '%$keyword%'";
+} else {
+    $sql = "SELECT DISTINCT bk_isbn, bk_title, auth_fname, auth_lname, bkcpy_id, bkcpy_stat FROM ydzc_cust_book_v WHERE top_name like '%$keyword%'";
+}
 $result = mysqli_query($connection, $sql);
 ?>
 
@@ -29,17 +29,20 @@ $result = mysqli_query($connection, $sql);
         <link href="../bootstrap.min.css" rel=stylesheet>
         <link href="../bootstrap-table.min.css" rel="stylesheet">
         <script src="../bootstrap.min.js"></script>
-        <script src="../jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
         <script src="../bootstrap-table.min.js"></script>
+        <script src="../other/allcookie.js"></script>
         <script>
-            function confirmrent() {
-            // //console.log("here");
-            // document.getElementById("confirmbox").style.display='block';
-            // document.getElementById("confirmbox").style.display='block';
-            alert("tanchuang");
-            }
-            $("#rantclickid2").on('click', function(){
-                alert("nihao");
+            $(document).ready(function(){
+                $("#bookrestable tr td").on("click", "#rantclickid",function(){
+                    var booknamet = $(this).parents("tr").find("#bookname").html();
+                    var cookiet = getCookie("welcome")
+                    console.log(cookiet);
+                    document.getElementById('bck_ID_id').setAttribute('value', booknamet);
+                    document.getElementById('cus_ID_id').setAttribute('value', cookiet);
+                    document.getElementById('rantform').submit();
+                    alert("rent success!");
+                });
             });
         </script>
     </head>
@@ -49,9 +52,16 @@ $result = mysqli_query($connection, $sql);
             <img src="../pictures/header-image.png" width=100% />
         </header>
 
+        <div>
+            <form id="rantform" method="post" action="cust-book-befo-rent.php">
+                <input type="hidden" name="cus_ID" id="cus_ID_id" value="" >
+                <input type="hidden" name="bck_ID" id="bck_ID_id" value="">
+            </form>
+            <p></p>
+        </div>
+
         <div class="container">
             <div class="row">
-                <a href="javascript:;" οnclick="alert(tanchuang);" id="rantclickid2">Rant</a>
                 <ul class="nav nav-pills">
                     <li><a href="cust-home.html">Home</a></li>
                     <li class="active"><a href="cust-book.html">Book</a></li>
@@ -83,44 +93,36 @@ $result = mysqli_query($connection, $sql);
 
         <div class="container">
             <div class="row">
-                <table class="table table-striped">
+                <table class="table table-striped" id="bookrestable">
                     <?php
                     echo "<tr><td>ISBN</td><td>Name</td><td>copyID</td><td>state</td><td>rant</td></tr>";
                     $row=mysqli_fetch_assoc($result);
                     while ($row) {
-                    echo "<tr><td>{$row["id"]}</td>";
-                    echo "<td>{$row["name"]}</td>";
-                    echo "<td>{$row["sal"]}</td>";
-                    echo "<td>{$row["age"]}</td>";
-                    if($row["id"]==$row["name"]){
-                        echo "<td><a href=\"javascript:void(0);\" οnclick=\"confirmrent();\" id=\"rantclickid\">Rant</a></td></tr>";
-                    } else {
-                        echo "<td>Borrowed</td></tr>";
-                    }
-                    // echo "<tr><td>{$row["BK_ISBN"]}</td>";
-                    // echo "<td>{$row["BK_TITLE"]}</td>";
-                    // echo "<td>{$row["BKCPY_ID"]}</td>";
-                    // echo "<td>{$row["BKCPY_STAT"]}</td>";
-                    // $bck_id=$row["BKCPY_ID"];
-                    // if($row["BKCPY_STAT"]=="A"){
-                    //     echo "<td><a href='javascript:void(0);' οnclick='confirmrent($bck_id)'>Rant</a></td></tr>";
+                    // echo "<tr><td>{$row["id"]}</td>";
+                    // echo "<td id='bookname'>{$row["name"]}</td>";
+                    // echo "<td>{$row["sal"]}</td>";
+                    // echo "<td>{$row["age"]}</td>";
+                    // if($row["id"]==$row["name"]){
+                    //     echo "<td><a id='rantclickid'>Rant</a></td></tr>";
                     // } else {
                     //     echo "<td>Borrowed</td></tr>";
                     // }
+                    echo "<tr><td>{$row["BK_ISBN"]}</td>";
+                    echo "<td id='bookname'>{$row["BK_TITLE"]}</td>";
+                    echo "<td>{$row["BKCPY_ID"]}</td>";
+                    echo "<td>{$row["BKCPY_STAT"]}</td>";
+                    $bck_id=$row["BKCPY_ID"];
+                    if($row["BKCPY_STAT"]=="A"){
+                        echo "<td><a id='rantclickid'>Rant</a></td></tr>";
+                    } else {
+                        echo "<td>Borrowed</td></tr>";
+                    }
                     $row=mysqli_fetch_assoc($result);
                     }
+                    echo "<tr><td>The end ...</td></tr>";
                     ?>
             </table>
             </div>
         </div>
-        <div id="confirmbox2">
-            <div style="width:500px;height:40px;">
-                <form action="rant.php">
-                    <input type="hidden" name="cus_ID" value="$_COOKIE['user']" >
-                    <!-- <input type="hidden" name="bck_ID" value="$bname" > -->
-                </form>
-            </div>
-        </div>
-        <div id="confirmbox" class=box></div>
     </body>
 </html>
