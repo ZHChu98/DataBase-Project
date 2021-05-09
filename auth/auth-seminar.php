@@ -3,7 +3,7 @@ $connection = mysqli_connect("localhost", "root", "");
 if (!$connection) { die("Could not connect: ".mysqli_connect_error()); }
 mysqli_select_db($connection, "ydzc_rtl");
 $user_id = $_COOKIE["user"];
-$sql = "SELECT evt_name, DATE_FORMAT(evt_startdt, '%Y-%m-%d') evt_startdt, DATE_FORMAT(evt_stopdt,'%Y-%m-%d') evt_stopdt, invt_id FROM ydzc_auth_sem_v WHERE auth_id=$user_id";
+$sql = "SELECT evt_id, evt_name, DATE_FORMAT(evt_startdt, '%Y-%m-%d') evt_startdt, DATE_FORMAT(evt_stopdt,'%Y-%m-%d') evt_stopdt, invt_id FROM ydzc_auth_sem_v WHERE auth_id=$user_id";
 $result = mysqli_query($connection, $sql);
 ?>
 
@@ -17,6 +17,7 @@ $result = mysqli_query($connection, $sql);
   <script src="../jquery-3.6.0.min.js"></script>
   <script src="../bootstrap.min.js"></script>
   <script src="../bootstrap-table.min.js"></script>
+  <style type="text/css">td {text-align: center;}</style>
 </head>
 
 <body>
@@ -38,12 +39,12 @@ $result = mysqli_query($connection, $sql);
   <div class="container">
     <div class="row">
       <table class="table table-striped">
+        <tr><td>Seminar ID</td><td>Seminar Name</td><td>Start Date</td><td>End Date</td><td>Invitation ID</td><td>Status</td></tr>
         <?php
         $cur_dt = date('Y-m-d h:i:s', time());
-        echo "<tr><td>Event Name</td><td>Start Date</td><td>End Date</td><td>Invitation ID</td><td>Status</td></tr>";
         while ($row=mysqli_fetch_assoc($result)) {
-          echo "<tr><td>{$row["evt_name"]}</td><td>{$row["evt_startdt"]}</td><td>{$row["evt_stopdt"]}</td><td>{$row["invt_id"]}</td>";
-          if (strtotime($row["evt_stopdt"])<strtotime($cur_dt)) {
+          echo "<tr><td>{$row['evt_id']}</td><td>{$row['evt_name']}</td><td>{$row['evt_startdt']}</td><td>{$row['evt_stopdt']}</td><td>{$row['invt_id']}</td>";
+          if (strtotime($row['evt_stopdt'])<strtotime($cur_dt)) {
             echo "<td>Closed</td></tr>";
           } else {
             echo "<td>Available</td></tr>";

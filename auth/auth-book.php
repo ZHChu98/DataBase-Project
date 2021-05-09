@@ -17,6 +17,7 @@ $result = mysqli_query($connection, $sql);
   <script src="../jquery-3.6.0.min.js"></script>
   <script src="../bootstrap.min.js"></script>
   <script src="../bootstrap-table.min.js"></script>
+  <style type="text/css">td {text-align: center;}</style>
 </head>
 
 <body>
