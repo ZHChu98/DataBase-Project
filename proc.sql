@@ -1,5 +1,5 @@
 DELIMITER $$
-CREATE OR REPLACE PROCEDURE ydzc_cust_bk_borrow_p (IN this_cust_id INT, IN this_bkcpy_id INT)
+CREATE OR REPLACE PROCEDURE ydzc_cust_bk_bor_p (IN this_cust_id INT, IN this_bkcpy_id INT)
 BEGIN
 START TRANSACTION;
 	UPDATE ydzc_bkcpy SET bkcpy_stat="N" WHERE bkcpy_id=this_bkcpy_id;
@@ -8,7 +8,14 @@ START TRANSACTION;
 END $$
 DELIMITER ;
 
-
+DELIMITER $$
+CREATE OR REPLACE PROCEDURE ydzc_cust_evt_reg_p (IN this_cust_id INT, IN this_evt_id INT)
+BEGIN
+START TRANSACTION;
+	INSERT INTO ydzc_reg VALUES (NULL, this_evt_id, this_cust_id);
+	COMMIT;
+END $$
+DELIMITER ;
 
 
 

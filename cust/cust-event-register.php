@@ -3,7 +3,8 @@ $connection = mysqli_connect("localhost", "root", "");
 if (!$connection) { die("Could not connect: ".mysqli_connect_error()); }
 mysqli_select_db($connection, "ydzc_rtl");
 $user_id = $_COOKIE["user"];
-$sql = "SELECT a.evt_id, a.evt_name, DATE_FORMAT(a.evt_startdt, '%Y-%m-%d') evt_startdt, DATE_FORMAT(a.evt_stopdt, '%Y-%m-%d') evt_stopdt, top_name, b.reg_id FROM ydzc_cust_evt_v a, ydzc_reg b WHERE b.cust_id=$user_id AND a.evt_id=b.evt_id";
+$evt_id = $_POST["evt_id"];
+$sql = "SELECT evt_id, evt_name, evt_id, DATE_FORMAT(evt_startdt, '%Y-%m-%d') evt_startdt, DATE_FORMAT(evt_stopdt, '%Y-%m-%d') evt_stopdt, top_name FROM ydzc_cust_evt_v WHERE evt_id=$evt_id";
 $result = mysqli_query($connection, $sql);
 ?>
 
@@ -19,7 +20,6 @@ $result = mysqli_query($connection, $sql);
   <script src="../bootstrap-table.min.js"></script>
   <script src="../bootstrap-dropdown.js"></script>
   <script src="../application.js"></script>
-  <style type="text/css">td {text-align: center;}</style>
 </head>
 
 <body>
@@ -56,38 +56,23 @@ $result = mysqli_query($connection, $sql);
 
   <div class="container">
     <div class="row">
-      <table class="table table-striped">
-        <tr><td>Exhibition ID</td><td>Exhibition Name</td><td>Start Date</td><td>End Date</td><td>Status</td><td>Topic</td><td>Registration ID</td></tr>
-        <?php
-        $cur_dt = date('Y-m-d h:i:s', time());
-        while ($row=mysqli_fetch_assoc($result)) {
-          $evt_id = $row["evt_id"];
-          $top_name = "<td style='vertical-align: middle;'>{$row['top_name']}";
-          $reg_id = "<td style='vertical-align: middle;'>{$row['reg_id']}</td>";
-          echo "<tr>";
-          echo "<td style='vertical-align: middle;'>{$row['evt_id']}</td>";
-          echo "<td style='vertical-align: middle;'>{$row['evt_name']}</td>";
-          echo "<td style='vertical-align: middle;'>{$row['evt_startdt']}</td>";
-          echo "<td style='vertical-align: middle;'>{$row['evt_stopdt']}</td>";
-          if (strtotime($row['evt_stopdt'])<strtotime($cur_dt)) {
-            echo "<td style='vertical-align: middle;'>Closed</td>";
-          } else {
-            echo "<td style='vertical-align: middle;'>Available</td>";
-          }
-          while ($row=mysqli_fetch_assoc($result)) {
-            if ($row["evt_id"] == $evt_id) {
-              $top_name .= "<br>{$row["top_name"]}";
-            } else {
-              break;
-            }
-          }
-          $top_name .= "</td>";
-          echo $top_name;
-          echo $reg_id;
-          echo "</tr>";
-        }
-        ?>
-      </table>
+      <form action="cust-event-register-confirm.php" method="post">
+        <table class="table table-striped">
+          <?php
+          $row = mysqli_fetch_assoc($result);
+          echo "<tr><td>Event ID</td><td>{$row['evt_id']}</td></tr>";
+          echo "<tr><td>Event Name</td><td>{$row['evt_name']}</td></tr>";
+          echo "<tr><td>Type</td><td>Exhibition</td></tr>";
+          echo "<tr><td>Start Date</td><td>{$row['evt_startdt']}</td></tr>";
+          echo "<tr><td>End Date</td><td>{$row['evt_stopdt']}</td></tr>";
+          ?>
+        </table>
+
+        <div>
+          <button type="submit" class="btn btn-primary" name="evt_id" value="<?php echo $evt_id?>">Confirm</button>
+          <a type="button" class="btn btn-primary" href="cust-event.php">Back</a>
+        </div>
+      </form>
     </div>
   </div>
 
