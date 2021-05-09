@@ -80,6 +80,7 @@ CREATE TABLE ydzc_invc (
     invc_id      INT NOT NULL AUTO_INCREMENT COMMENT 'INVOICE ID',
     invc_date    DATETIME NOT NULL COMMENT 'INVOICE DATE',
     invc_amount  DECIMAL(6, 2) NOT NULL COMMENT 'INVOICE AMOUNT',
+	invc_rest	 DECIMAL(6, 2) NOT NULL COMMENT 'INVOICE REST AMOUNT',
     rent_id      INT NOT NULL,
 	PRIMARY KEY (invc_id),
 	FOREIGN KEY (rent_id) REFERENCES ydzc_rent(rent_id)
@@ -236,9 +237,3 @@ CREATE OR REPLACE VIEW ydzc_cust_bk_v AS
 SELECT a.bk_isbn, a.bk_title, b.auth_fname, b.auth_lname, d.top_name, f.bkcpy_id, f.bkcpy_stat
 FROM ydzc_bk a, ydzc_auth b, ydzc_bk_auth c, ydzc_top d, ydzc_bk_top e, ydzc_bkcpy f
 WHERE a.bk_isbn=c.bk_isbn AND b.auth_id=c.auth_id AND a.bk_isbn=e.bk_isbn AND d.top_name=e.top_name AND a.bk_isbn=f.bk_isbn;
-
-CREATE OR REPLACE PROCEDURE ydzc_cust_bk_borrow(IN this_cust_id INT, IN this_bkcpy_id INT)
-BEGIN 
-    UPDATE ydzc_bkcpy SET bkcpy_stat="N" WHERE bkcpy_id=this_bkcpy_id;
-    INSERT INTO ydzc_rent VALUES (NULL, "B", CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY), NULL, this_bkcpy_id, this_cust_id);
-END;
