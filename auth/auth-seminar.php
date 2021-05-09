@@ -40,7 +40,7 @@ $result = mysqli_query($connection, $sql);
       <table class="table table-striped">
         <?php
         $cur_dt = date('Y-m-d h:i:s', time());
-        echo "<tr><td>Event Name</td><td>Start DateTime</td><td>End DateTime</td><td>Invitation ID</td><td>Status</td></tr>";
+        echo "<tr><td>Event Name</td><td>Start Date</td><td>End Date</td><td>Invitation ID</td><td>Status</td></tr>";
         while ($row=mysqli_fetch_assoc($result)) {
           echo "<tr><td>{$row["evt_name"]}</td><td>{$row["evt_startdt"]}</td><td>{$row["evt_stopdt"]}</td><td>{$row["invt_id"]}</td>";
           if (strtotime($row["evt_stopdt"])<strtotime($cur_dt)) {
