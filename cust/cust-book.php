@@ -29,6 +29,7 @@ if (isset($_POST["search-meth"]) && isset($_POST["search-info"])) {
   <script src="../bootstrap-table.min.js"></script>
   <script src="../bootstrap-dropdown.js"></script>
   <script src="../application.js"></script>
+  <style type="text/css">td {text-align: center;}</style>
 </head>
 
 <body>
@@ -100,20 +101,20 @@ if (isset($_POST["search-meth"]) && isset($_POST["search-info"])) {
           $count = 0;
           $copy_str = "";
           do {
-            $copy_str .= "<tr><td>{$row3['bkcpy_id']}</td>";
+            $copy_str .= "<tr><td style='vertical-align: middle;'>{$row3['bkcpy_id']}</td>";
             if ($row3['bkcpy_stat']=="Y") {
-              $copy_str .= "<td><form action='cust-book-borrow.php' method='post'><button type='submit' class='btn btn-primary' name='bkcpy_id' value='{$row3['bkcpy_id']}'>Available</button></form></td></tr>";
+              $copy_str .= "<td style='vertical-align: middle;'><form action='cust-book-borrow.php' method='post'><button type='submit' class='btn btn-primary' name='bkcpy_id' value='{$row3['bkcpy_id']}'>Available</button></form></td></tr>";
             } else {
-              $copy_str .= "<td>Unavailable</td></tr>";
+              $copy_str .= "<td style='vertical-align: middle;'>Unavailable</td></tr>";
             }
             $count += 1;
             $row3 = mysqli_fetch_assoc($result3); 
           } while ($row3 && $row3['bk_isbn']==$isbn);
           # isbn, title
-          echo "<tr><td rowspan='$count'>{$row1['bk_isbn']}</td>";
-          echo "<td rowspan='$count'>{$row1['bk_title']}</td>";
+          echo "<tr><td rowspan='$count' style='vertical-align: middle;'>{$row1['bk_isbn']}</td>";
+          echo "<td rowspan='$count' style='vertical-align: middle;'>{$row1['bk_title']}</td>";
           # author
-          echo "<td rowspan='$count'>{$row1['auth_fname']} {$row1['auth_lname']}";
+          echo "<td rowspan='$count' style='vertical-align: middle;'>{$row1['auth_fname']} {$row1['auth_lname']}";
           while ($row1=mysqli_fetch_assoc($result1)) {
             if ($row1['bk_isbn']==$isbn) {
               echo "<br>{$row1['auth_fname']} {$row1['auth_lname']}";
@@ -123,7 +124,7 @@ if (isset($_POST["search-meth"]) && isset($_POST["search-info"])) {
           }
           echo "</td>";
           # topic
-          echo "<td rowspan='$count'>{$row2['top_name']}";
+          echo "<td rowspan='$count' style='vertical-align: middle;'>{$row2['top_name']}";
           while ($row2=mysqli_fetch_assoc($result2)) {
             if ($row2['bk_isbn'] == $isbn) {
               echo "<br>{$row2['top_name']}";

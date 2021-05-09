@@ -3,7 +3,7 @@ $connection = mysqli_connect("localhost", "root", "");
 if (!$connection) { die("Could not connect: ".mysqli_connect_error()); }
 mysqli_select_db($connection, "ydzc_rtl");
 $user_id = $_COOKIE["user"];
-$sql = "SELECT evt_name, evt_startdt, evt_stopdt, invt_id FROM ydzc_auth_sem_v WHERE auth_id=$user_id";
+$sql = "SELECT evt_name, DATE_FORMAT(evt_startdt, '%Y-%m-%d') evt_startdt, DATE_FORMAT(evt_stopdt,'%Y-%m-%d') evt_stopdt, invt_id FROM ydzc_auth_sem_v WHERE auth_id=$user_id";
 $result = mysqli_query($connection, $sql);
 ?>
 
