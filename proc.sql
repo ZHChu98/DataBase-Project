@@ -17,5 +17,12 @@ START TRANSACTION;
 END $$
 DELIMITER ;
 
-
-
+DELIMITER $$
+CREATE OR REPLACE PROCEDURE ydzc_cust_rm_resv_p (IN this_cust_id INT, IN this_rmsect_id INT)
+BEGIN
+START TRANSACTION;
+	INSERT INTO ydzc_resv VALUES (NULL, this_cust_id, this_rmsect_id);
+	UPDATE ydzc_rmsect SET rmsect_rmncap=rmsect_rmncap-1 WHERE rmsect_id=this_rmsect_id;
+	COMMIT;
+END $$
+DELIMITER ;

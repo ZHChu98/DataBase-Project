@@ -243,3 +243,7 @@ SELECT a.cust_id, b.rent_id, b.rent_stat, b.rent_bordt, b.rent_erntdt, b.rent_ar
 FROM ydzc_cust a, ydzc_rent b, ydzc_invc c, ydzc_bkcpy d
 WHERE a.cust_id=b.cust_id AND b.rent_id=c.rent_id AND b.bkcpy_id=d.bkcpy_id;
 
+CREATE OR REPLACE VIEW ydzc_cust_rm_v AS
+SELECT a.rm_id, b.rmsect_id, b.rmsect_dt, b.rmsect_ts, c.cust_id
+FROM ydzc_rm a, ydzc_rmsect b, ydzc_resv c
+WHERE a.rm_id=b.rm_id AND b.rmsect_id=c.rmsect_id;
