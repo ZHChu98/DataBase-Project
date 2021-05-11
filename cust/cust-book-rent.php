@@ -3,8 +3,8 @@ $connection = mysqli_connect("localhost", "root", "");
 if (!$connection) { die("Could not connect: ".mysqli_connect_error()); }
 mysqli_select_db($connection, "ydzc_rtl");
 $user_id = $_COOKIE["user"];
-$sql = "SELECT a.rent_id, a.rent_stat, DATE_FORMAT(a.rent_bordt, '%Y-%m-%d') rent_bordt, DATE_FORMAT(a.rent_erntdt, '%Y-%m-%d') rent_erntdt, DATE_FORMAT(a.rent_arntdt, '%Y-%m-%d') rent_arntdt, a.invc_id, a.invc_rest, a.bkcpy_id, b.bk_title FROM ydzc_cust_rent_v a, ydzc_bk b WHERE a.cust_id=$user_id AND a.bk_isbn=b.bk_isbn";
-$result = mysqli_query($connection, $sql);
+$sql1 = "SELECT a.rent_id, a.rent_stat, DATE_FORMAT(a.rent_bordt, '%Y-%m-%d') rent_bordt, DATE_FORMAT(a.rent_erntdt, '%Y-%m-%d') rent_erntdt, DATE_FORMAT(a.rent_arntdt, '%Y-%m-%d') rent_arntdt, a.bkcpy_id, b.bk_title FROM ydzc_cust_rent_v a, ydzc_bk b WHERE a.cust_id=$user_id AND a.bk_isbn=b.bk_isbn";
+$result1 = mysqli_query($connection, $sql1);
 ?>
 
 <!DOCTYPE html>
@@ -57,27 +57,34 @@ $result = mysqli_query($connection, $sql);
       <table class="table table-striped">
         <tr><td>Rental ID</td><td>Book Title</td><td>Borrow Date</td><td>Expected Return Date</td><td>Actual Return Date</td><td>Rental Status</td><td>Payment</td></tr>
         <?php
-        while ($row=mysqli_fetch_assoc($result)) {
+        while ($row1=mysqli_fetch_assoc($result1)) {
           echo "<tr>";
-          echo "<td style='vertical-align: middle;'>{$row['rent_id']}</td>";
-          echo "<td style='vertical-align: middle;'><form action='cust-book-rent-bkdetail.php' method='post'><button type='submit' class='btn' style='background-color: transparent;' name='bkcpy_id' value='{$row['bkcpy_id']}'>{$row['bk_title']}</button></form></td>";
-          echo "<td style='vertical-align: middle;'>{$row['rent_bordt']}</td>";
-          echo "<td style='vertical-align: middle;'>{$row['rent_erntdt']}</td>";
-          echo "<td style='vertical-align: middle;'>{$row['rent_arntdt']}</td>";
-          if ($row['rent_stat']=="B") {
+          echo "<td style='vertical-align: middle;'>{$row1['rent_id']}</td>";
+          echo "<td style='vertical-align: middle;'><form action='cust-book-rent-bkdetail.php' method='post'><button type='submit' class='btn' style='background-color: transparent;' name='bkcpy_id' value='{$row1['bkcpy_id']}'>{$row1['bk_title']}</button></form></td>";
+          echo "<td style='vertical-align: middle;'>{$row1['rent_bordt']}</td>";
+          echo "<td style='vertical-align: middle;'>{$row1['rent_erntdt']}</td>";
+          echo "<td style='vertical-align: middle;'>{$row1['rent_arntdt']}</td>";
+          if ($row1['rent_stat']=="B") {
             echo "<td style='vertical-align: middle;'>Borrowed</td>";
-          } elseif ($row['rent_stat']=="L") {
+          } elseif ($row1['rent_stat']=="L") {
             echo "<td style='vertical-align: middle;'>Late</td>";
-          } elseif ($row['rent_stat']=="R") {
+          } elseif ($row1['rent_stat']=="R") {
             echo "<td style='vertical-align: middle;'>Returned</td>";
           }
-          echo "<td style='vertical-align: middle;'><form action='cust-book-rent-invcdetail.php' method='post'><button type='submit' class='btn' style='background-color: transparent;' name='invc_id' value='{$row['invc_id']}'>";
-          if ($row['invc_rest']==0) {
-            echo "Finished";
+          $sql2 = "SELECT invc_id, invc_rest FROM ydzc_invc WHERE rent_id={$row1['rent_id']}";
+          $result2 = mysqli_query($connection, $sql2);
+          $row2=mysqli_fetch_assoc($result2);
+          if ($row2) {
+            echo "<td style='vertical-align: middle;'><form action='cust-book-rent-invcdetail.php' method='post'><button type='submit' class='btn' style='background-color: transparent;' name='invc_id' value='{$row2['invc_id']}'>";
+            if ($row2['invc_rest']==0) {
+              echo "Finished";
+            } else {
+              echo "Unfinished";
+            }
+            echo "</button></form></td>";
           } else {
-            echo "Unfinished";
+            echo "<td></td>";
           }
-          echo "</button></form></td>";
           echo "</tr>";
         }
         ?>
