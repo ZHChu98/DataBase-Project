@@ -69,7 +69,7 @@ if (isset($_POST["search-meth"]) && isset($_POST["search-info"])) {
         <select name="search-meth">
           <option value="bk_isbn">ISBN</option>
           <option value="bk_title">Title</option>
-          <option value="concat(auth_fname, ' ', auth_lname)">Author</option>
+          <option value="concat(cust_fname, ' ', cust_lname)">Author</option>
           <option value="top_name">Topic</option>
         </select>
 

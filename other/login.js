@@ -13,41 +13,41 @@ function setCookieforlogin(cname,cvalue,exdays,path)
   d.setTime(d.getTime()+(exdays*24*60*60*1000));
   var expires = "expires="+d.toGMTString();
   document.cookie = cname + "=" + cvalue + "; " + path + "; "+ expires;
-  window.location.href = "../cust/cust-home.html";
+  headers("location: ../cust/cust-home.html");
 }
 
-function loginsubmit(){
-    $.ajax({
-        type: "POST",
-        url: "login.php",
-        data: $('#loginform').serialize(),
-        success: function(data){
-            //alert(JSON.stringify(data));
-            if(data[data.length-1]=="1"){
-                var theusername=$("#namerec").val();
-                //alert(theusername);
-                //var thepassword=$("#passrec").val();
-                //alert(thepassword);
-                setCookieforlogin("welcome", theusername, 30, "path=/");
-                window.location.href = "../cust/cust-home.html?theusername="+theusername;
-            } else if(data[data.length-1]=="0"){
-                $showsomething = "account doesn't exit or password mismatch!";
-                alert($showsomething);
-            } else {
-                var theusername=$("#namerec").val();
-                //alert(theusername);
-                var thepassword=$("#passrec").val();
-                //alert(thepassword);
-                alert("Both Fields are required");
-                //alert(JSON.stringify(data));
-            }
-        },
-        error: function(data){
-            var result=document.getElementById("needtoshowresult");
-            result.innerHTML="failed";
-            $showsomething = "failed...";
-            alert($showsomething);
-        }
-    });
-}
+// function loginsubmit(){
+//     $.ajax({
+//         type: "POST",
+//         url: "login.php",
+//         data: $('#loginform').serialize(),
+//         success: function(data){
+//             alert(JSON.stringify(data));
+//             if(data[data.length-1]=="1"){
+//                 var theusername=$("#namerec").val();
+//                 //alert(theusername);
+//                 //var thepassword=$("#passrec").val();
+//                 //alert(thepassword);
+//                 setCookieforlogin("user", theusername, 30, "path=/");
+//                 //window.location.href = "../cust/cust-home.html?theusername="+theusername;
+//             } else if(data[data.length-1]=="0"){
+//                 $showsomething = "account doesn't exit or password mismatch!";
+//                 alert($showsomething);
+//             } else {
+//                 var theusername=$("#namerec").val();
+//                 //alert(theusername);
+//                 var thepassword=$("#passrec").val();
+//                 //alert(thepassword);
+//                 alert("Both Fields are required");
+//                 //alert(JSON.stringify(data));
+//             }
+//         },
+//         error: function(data){
+//             var result=document.getElementById("needtoshowresult");
+//             result.innerHTML="failed";
+//             $showsomething = "failed...";
+//             alert($showsomething);
+//         }
+//     });
+// }
 

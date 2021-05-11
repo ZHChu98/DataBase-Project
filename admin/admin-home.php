@@ -1,8 +1,17 @@
+<?php
+$connection = mysqli_connect("localhost", "root", "");
+if (!$connection) { die("Could not connect: ".mysqli_connect_error()); }
+mysqli_select_db($connection, "ydzc_rtl");
+$user_id = $_COOKIE["user"];
+$sql = "SELECT admin_id FROM ydzc_admin WHERE admin_id=$user_id";
+$result = mysqli_query($connection, $sql);
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <title> Author Invitation </title>
+  <title> Homepage </title>
   <link href="../bootstrap.min.css" rel=stylesheet>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
   <script src="../jquery.js"></script>
@@ -18,19 +27,19 @@
   <div class="container">
     <div class="row">
       <ul class="nav nav-pills">
-        <li><a href="admin-home.html">Home</a></li>
+        <li class="active"><a href="admin-home.php">Home</a></li>
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="admin-cust.html">Customer<b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="admin-cust.html">Profile</a></li>
-            <li><a href="admin-cust-rental.html">Rental</a></li>
-            <li><a href="admin-cust-event.html">Event</a></li>
-            <li><a href="admin-cust-room.html">Study Room</a></li>
+            <li><a href="admin-cust.php">Profile</a></li>
+            <li><a href="admin-cust-rental.php">Rental</a></li>
+            <li><a href="admin-cust-event.php">Event</a></li>
+            <li><a href="admin-cust-room.php">Study Room</a></li>
           </ul>
         </li>
-        <li class="active dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="admin-auth.html">Author<b class="caret"></b></a>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="admin-auth.html">Author<b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="admin-auth.html">Profile</a></li>
-            <li><a href="admin-auth-seminar.html">Seminar</a></li>
+            <li><a href="admin-auth.php">Profile</a></li>
+            <li><a href="admin-auth-seminar.php">Seminar</a></li>
           </ul>
         </li>
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="admin-book.html">Book<b class="caret"></b></a>
@@ -53,9 +62,17 @@
       </ul>
     </div>
   </div>
-  
 
-  
+  <div class="container">
+    <div class="row">
+      <table class="table table-striped">
+        <?php
+        $row = mysqli_fetch_assoc($result);
+        echo "<tr><td>ID</td><td>{$row["admin_id"]}</td></tr>";
+        ?>
+      </table>
+    </div>
+  </div>
 
 </body>
 </html>

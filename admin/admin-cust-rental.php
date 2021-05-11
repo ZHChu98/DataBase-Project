@@ -1,3 +1,16 @@
+<?php
+$connection = mysqli_connect("localhost", "root", "");
+if (!$connection) { die("Could not connect: ".mysqli_connect_error()); }
+mysqli_select_db($connection, "ydzc_rtl");
+if (isset($_POST["search-meth"]) && isset($_POST["search-info"])) {
+  $method = $_POST["search-meth"];
+  $keyword = $_POST["search-info"];
+  $user_id = $_COOKIE["user"];
+  $sql = "SELECT DISTINCT * FROM ydzc_rent WHERE $method like '%$keyword%'";
+  $result = mysqli_query($connection, $sql);
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,26 +69,13 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-sm-4">
-        <h2>Find all customer</h2>
-        <div class="fakeimg"><img src="../pictures/emcu.png" width=100% /></div>
-        <h3>Manage Customer</h3>
-        <p>For CUSD</p>
-        <ul class="nav nav-pills nav-stacked">
-          <li class="active"><a href="#">Search Information</a></li>
-          <li><a href="#">Edit Information</a></li>
-          <li><a href="#">Delete Information</a></li>
-        </ul>
-        <hr class="hidden-sm hidden-md hidden-lg">
-      </div>
-      <div class="col-sm-8">
-        <form id="searchbookform" action="cust-book.php" method="post">
-          <select class="bootstrap-select" data-style="btn-info" name="searchas" >
+        <form action="admin-cust-rental.php" method="post">
+          <select class="bootstrap-select" data-style="btn-info" name="search-meth" >
             <optgroup label="Picnic">
-              <option value="id">ISBN</option>
-              <option value="title">Title</option>
-              <option value="author">Author</option>
-              <option value="topic">Topic</option>
+              <option value="rent_id">rentID</option>
+              <option value="rent_stat">state</option>
+              <option value="bkcpy_id">bookcopy</option>
+              <option value="cust_id">customer</option>
             </optgroup>
           </select>
           <div class="input-group">
@@ -86,7 +86,32 @@
           </div>
         </form>
       </div>
+  </div>
+
+  <?php
+  if (isset($result)) {
+  ?>
+  <div class="container">
+    <div class="row">
+      <table class="table table-striped">
+        <?php
+        echo "<tr><td>ID</td><td>state</td><td>borrow time</td><td>expected return time</td><td>actual return time</td><td>copy id</td><td>customer id</td><td>edit</td><td>delete</td></tr>";
+        $row = mysqli_fetch_assoc($result);
+        while($row) {
+          $userid=$row['rent_id'];
+          echo "<tr><td>{$row['rent_id']}</td><td>{$row['rent_stat']}</td><td>{$row['rent_bordt']}</td><td>{$row['rent_erntdt']}</td><td>{$row['rent_arntdt']}</td><td>{$row['bkcpy_id']}</td><td>{$row['cust_id']}</td>";
+          echo "<td><form action='admin-cust-rental-edit.php' method='post'><button type='submit' class='btn btn-primary' name='userid' value='$userid'>edit</button></form></td>";
+          echo "<td><form action='admin-cust-rental-delete.php' method='post'><button type='submit' class='btn btn-primary' name='userid' value='$userid'>delete</button></form></td></tr>";
+          $row = mysqli_fetch_assoc($result);
+        }
+        ?>
+      </table>
     </div>
   </div>
+
+  <?php
+  }
+  ?>
+
 </body>
 </html>
