@@ -247,3 +247,11 @@ CREATE OR REPLACE VIEW ydzc_cust_rm_v AS
 SELECT a.rm_id, b.rmsect_id, b.rmsect_dt, b.rmsect_ts, c.cust_id
 FROM ydzc_rm a, ydzc_rmsect b, ydzc_resv c
 WHERE a.rm_id=b.rm_id AND b.rmsect_id=c.rmsect_id;
+
+CREATE INDEX idx_cust_idtype ON ydzc_cust (cust_idtype);
+CREATE INDEX idx_rent_stat ON ydzc_rent (rent_stat);
+CREATE INDEX idx_pay_meth ON ydzc_pay (pay_meth);
+CREATE INDEX idx_bkcpy_stat ON ydzc_bkcpy (bkcpy_stat);
+CREATE INDEX idx_evt_type ON ydzc_evt (evt_type);
+CREATE INDEX idx_spr_type ON ydzc_spr (spr_type);
+CREATE INDEX idx_rmsect_ts ON ydzc_rmsect (rmsect_ts);
