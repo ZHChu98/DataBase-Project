@@ -6,7 +6,7 @@ if (isset($_POST["search-meth"]) && isset($_POST["search-info"])) {
   $method = $_POST["search-meth"];
   $keyword = $_POST["search-info"];
   $user_id = $_COOKIE["user"];
-  $sql = "SELECT DISTINCT * FROM ydzc_bk WHERE $method like '%$keyword%'";
+  $sql = "SELECT DISTINCT * FROM ydzc_invc WHERE $method like '%$keyword%'";
   $result = mysqli_query($connection, $sql);
 }
 ?>
@@ -79,11 +79,11 @@ if (isset($_POST["search-meth"]) && isset($_POST["search-info"])) {
 
   <div class="container">
     <div class="row">
-        <form action="admin-book.php" method="post">
+        <form action="admin-book-invoice.php" method="post">
           <select class="bootstrap-select" data-style="btn-info" name="search-meth" >
             <optgroup label="Picnic">
-              <option value="bk_isbn">book isbn</option>
-              <option value="bk_title">book name</option>
+              <option value="invc_id">invice id</option>
+              <option value="rent_id">rent id</option>
             </optgroup>
           </select>
           <div class="input-group">
@@ -103,11 +103,11 @@ if (isset($_POST["search-meth"]) && isset($_POST["search-info"])) {
     <div class="row">
       <table class="table table-striped">
         <?php
-        echo "<tr><td>book ISBN</td><td>book name</td></tr>";
+        echo "<tr><td>invc id</td><td>invc date</td><td>invc amount</td><td>rent id</td></tr>";
         $row = mysqli_fetch_assoc($result);
         while($row) {
-          $userid=$row['bk_isbn'];
-          echo "<tr><td>{$row['bk_isbn']}</td><td>{$row['bk_title']}</td>";
+          $userid=$row['invc_id'];
+          echo "<tr><td>{$row['invc_id']}</td><td>{$row['invc_date']}</td><td>{$row['invc_amount']}</td><td>{$row['rent_id']}</td></tr>";
           $row = mysqli_fetch_assoc($result);
         }
         ?>
@@ -118,12 +118,6 @@ if (isset($_POST["search-meth"]) && isset($_POST["search-info"])) {
   <?php
   }
   ?>
-
-<div class="container">
-    <div class="row">
-      <p style="text-align: center"><a href="addbook.html"> add new book! </a></p>
-    </div>
-  <div>
 
 </body>
 </html>

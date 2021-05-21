@@ -6,7 +6,7 @@ if (isset($_POST["search-meth"]) && isset($_POST["search-info"])) {
   $method = $_POST["search-meth"];
   $keyword = $_POST["search-info"];
   $user_id = $_COOKIE["user"];
-  $sql = "SELECT DISTINCT * FROM ydzc_bk WHERE $method like '%$keyword%'";
+  $sql = "SELECT DISTINCT * FROM ydzc_evt WHERE $method like '%$keyword%'";
   $result = mysqli_query($connection, $sql);
 }
 ?>
@@ -21,16 +21,6 @@ if (isset($_POST["search-meth"]) && isset($_POST["search-info"])) {
   <script src="../jquery.js"></script>
   <script src="../bootstrap-dropdown.js"></script>
   <script src="../application.js"></script>
-  <script>
-    function deleteconfirm() {
-      var deletecusform = document.getElementById('bkdeleteform').value;
-      var r = confirm("Are you sure you want to delete?");
-      if (r == true) {
-        deletebkform.submit();
-        alert("successful delete!");
-      }
-    }
-  </script>
 </head>
 
 <body>
@@ -56,7 +46,7 @@ if (isset($_POST["search-meth"]) && isset($_POST["search-info"])) {
             <li><a href="admin-auth-seminar.php">Seminar</a></li>
           </ul>
         </li>
-        <li class="active dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="admin-book.php">Book<b class="caret"></b></a>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="admin-book.php">Book<b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="admin-book.php">Book</a></li>
             <li><a href="admin-book-rental.php">Rental</a></li>
@@ -79,11 +69,11 @@ if (isset($_POST["search-meth"]) && isset($_POST["search-info"])) {
 
   <div class="container">
     <div class="row">
-        <form action="admin-book.php" method="post">
+        <form action="admin-event.php" method="post">
           <select class="bootstrap-select" data-style="btn-info" name="search-meth" >
             <optgroup label="Picnic">
-              <option value="bk_isbn">book isbn</option>
-              <option value="bk_title">book name</option>
+              <option value="evt_id">event id</option>
+              <option value="evt_name">event name</option>
             </optgroup>
           </select>
           <div class="input-group">
@@ -103,11 +93,11 @@ if (isset($_POST["search-meth"]) && isset($_POST["search-info"])) {
     <div class="row">
       <table class="table table-striped">
         <?php
-        echo "<tr><td>book ISBN</td><td>book name</td></tr>";
+        echo "<tr><td>event id</td><td>evt name</td></tr>";
         $row = mysqli_fetch_assoc($result);
         while($row) {
-          $userid=$row['bk_isbn'];
-          echo "<tr><td>{$row['bk_isbn']}</td><td>{$row['bk_title']}</td>";
+          $userid=$row['evt_id'];
+          echo "<tr><td>{$row['evt_id']}</td><td>{$row['evt_name']}</td></tr>";
           $row = mysqli_fetch_assoc($result);
         }
         ?>
@@ -118,12 +108,6 @@ if (isset($_POST["search-meth"]) && isset($_POST["search-info"])) {
   <?php
   }
   ?>
-
-<div class="container">
-    <div class="row">
-      <p style="text-align: center"><a href="addbook.html"> add new book! </a></p>
-    </div>
-  <div>
 
 </body>
 </html>

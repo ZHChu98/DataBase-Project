@@ -2,10 +2,10 @@
 $connection = mysqli_connect("localhost", "root", "");
 if (!$connection) { die("Could not connect: ".mysqli_connect_error()); }
 mysqli_select_db($connection, "ydzc_rtl");
-$id = $_POST["id"];
-$fname = $_POST["fname"];
-$lname = $_POST['lname'];
-$email = $_POST['email'];
+$id = htmlspecialchars($_POST["id"]);
+$fname = htmlspecialchars($_POST["fname"]);
+$lname = htmlspecialchars($_POST['lname']);
+$email = htmlspecialchars($_POST['email']);
 $hno = $_POST['hno'];
 $st = $_POST['st'];
 $city = $_POST['city'];

@@ -120,5 +120,11 @@ if (isset($_POST["search-meth"]) && isset($_POST["search-info"])) {
   }
   ?>
 
+<div class="container">
+    <div class="row">
+      <p style="text-align: center"><a href="invite.html"> invite author now! </a></p>
+    </div>
+  <div>
+
 </body>
 </html>
