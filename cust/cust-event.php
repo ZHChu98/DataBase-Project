@@ -2,9 +2,14 @@
 $connection = mysqli_connect("localhost", "root", "");
 if (!$connection) { die("Could not connect: ".mysqli_connect_error()); }
 mysqli_select_db($connection, "ydzc_rtl");
-$user_id = $_COOKIE["user"];
-$sql = "SELECT a.evt_id, a.evt_name, DATE_FORMAT(a.evt_startdt, '%Y-%m-%d') evt_startdt, DATE_FORMAT(a.evt_stopdt, '%Y-%m-%d') evt_stopdt, top_name, b.reg_id FROM ydzc_cust_evt_v a, ydzc_reg b WHERE b.cust_id=$user_id AND a.evt_id=b.evt_id";
-$result = mysqli_query($connection, $sql);
+if (isset($_POST["search-meth"]) && isset($_POST["search-info"])) {
+  $method = $_POST["search-meth"];
+  $keyword = $_POST["search-info"];
+  $user_id = $_COOKIE["user"];
+
+  $sql = "SELECT DISTINCT evt_id, evt_name, evt_id, DATE_FORMAT(evt_startdt, '%Y-%m-%d') evt_startdt, DATE_FORMAT(evt_stopdt, '%Y-%m-%d') evt_stopdt, top_name FROM ydzc_cust_evt_v WHERE $method like '%$keyword%' ORDER BY evt_id";
+  $result = mysqli_query($connection, $sql);
+}
 ?>
 
 <!DOCTYPE html>
@@ -56,26 +61,41 @@ $result = mysqli_query($connection, $sql);
 
   <div class="container">
     <div class="row">
+      <form action="cust-event.php" method="post">
+        <select name="search-meth">
+          <option value="evt_name">Name</option>
+          <option value="top_name">Topic</option>
+        </select>
+
+        <div class="input-group">
+          <input type="text" class="form-control" name="search-info" />
+          <div class="input-group-btn">
+            <button type="submit" class="btn btn-primary">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <?php
+  if (isset($result)) {
+  ?>
+  <div class="container">
+    <div class="row">
       <table class="table table-striped">
-        <tr><td>Exhibition ID</td><td>Exhibition Name</td><td>Start Date</td><td>End Date</td><td>Status</td><td>Topic</td><td>Registration ID</td></tr>
         <?php
-        $cur_dt = date('Y-m-d h:i:s', time());
+        echo "<tr><td>Exhibition ID</td><td>Exhibition Name</td><td>Start Date</td><td>End Date</td><td>Topic</td><td>Status</td></tr>";
         while ($row=mysqli_fetch_assoc($result)) {
           $evt_id = $row["evt_id"];
+          $evt_name = $row["evt_name"];
           $top_name = "<td style='vertical-align: middle;'>{$row['top_name']}";
-          $reg_id = "<td style='vertical-align: middle;'>{$row['reg_id']}</td>";
-          echo "<tr>";
-          echo "<td style='vertical-align: middle;'>{$row['evt_id']}</td>";
-          echo "<td style='vertical-align: middle;'>{$row['evt_name']}</td>";
-          echo "<td style='vertical-align: middle;'>{$row['evt_startdt']}</td>";
-          echo "<td style='vertical-align: middle;'>{$row['evt_stopdt']}</td>";
-          if (strtotime($row['evt_stopdt'])<strtotime($cur_dt)) {
-            echo "<td style='vertical-align: middle;'>Closed</td>";
-          } else {
-            echo "<td style='vertical-align: middle;'>Available</td>";
-          }
+          $stop_dt = $row["evt_stopdt"];
+          echo "<tr><td style='vertical-align: middle;'>{$row["evt_id"]}</td>";
+          echo "<td style='vertical-align: middle;'>{$row["evt_name"]}</td>";
+          echo "<td style='vertical-align: middle;'>{$row["evt_startdt"]}</td>";
+          echo "<td style='vertical-align: middle;'>{$row["evt_stopdt"]}</td>";
           while ($row=mysqli_fetch_assoc($result)) {
-            if ($row["evt_id"] == $evt_id) {
+            if ($row["evt_name"] == $evt_name) {
               $top_name .= "<br>{$row["top_name"]}";
             } else {
               break;
@@ -83,13 +103,21 @@ $result = mysqli_query($connection, $sql);
           }
           $top_name .= "</td>";
           echo $top_name;
-          echo $reg_id;
+          $cur_dt = date('Y-m-d h:i:s', time());
+          if (strtotime($stop_dt)<strtotime($cur_dt)) {
+            echo "<td style='vertical-align: middle;'>Closed</td>";
+          } else {
+            echo "<td style='vertical-align: middle;'><form action='cust-event-register.php' method='post'><button class='btn btn-primary' type='submit' name='evt_id' value='$evt_id'>Register</button></form></td>";
+          }
           echo "</tr>";
         }
         ?>
       </table>
     </div>
   </div>
+  <?php
+  }
+  ?>
 
 </body>
 </html>

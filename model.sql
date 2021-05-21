@@ -80,6 +80,7 @@ CREATE TABLE ydzc_invc (
     invc_id      INT NOT NULL AUTO_INCREMENT COMMENT 'INVOICE ID',
     invc_date    DATETIME NOT NULL COMMENT 'INVOICE DATE',
     invc_amount  DECIMAL(6, 2) NOT NULL COMMENT 'INVOICE AMOUNT',
+	invc_rest	 DECIMAL(6, 2) NOT NULL COMMENT 'INVOICE REST AMOUNT',
     rent_id      INT NOT NULL,
 	PRIMARY KEY (invc_id),
 	FOREIGN KEY (rent_id) REFERENCES ydzc_rent(rent_id)
@@ -236,3 +237,13 @@ CREATE OR REPLACE VIEW ydzc_cust_bk_v AS
 SELECT a.bk_isbn, a.bk_title, b.auth_fname, b.auth_lname, d.top_name, f.bkcpy_id, f.bkcpy_stat
 FROM ydzc_bk a, ydzc_auth b, ydzc_bk_auth c, ydzc_top d, ydzc_bk_top e, ydzc_bkcpy f
 WHERE a.bk_isbn=c.bk_isbn AND b.auth_id=c.auth_id AND a.bk_isbn=e.bk_isbn AND d.top_name=e.top_name AND a.bk_isbn=f.bk_isbn;
+
+CREATE OR REPLACE VIEW ydzc_cust_rent_v AS
+SELECT a.cust_id, b.rent_id, b.rent_stat, b.rent_bordt, b.rent_erntdt, b.rent_arntdt, c.invc_id, c.invc_amount, c.invc_rest, d.bkcpy_id, d.bk_isbn
+FROM ydzc_cust a, ydzc_rent b, ydzc_invc c, ydzc_bkcpy d
+WHERE a.cust_id=b.cust_id AND b.rent_id=c.rent_id AND b.bkcpy_id=d.bkcpy_id;
+
+CREATE OR REPLACE VIEW ydzc_cust_rm_v AS
+SELECT a.rm_id, b.rmsect_id, b.rmsect_dt, b.rmsect_ts, c.cust_id
+FROM ydzc_rm a, ydzc_rmsect b, ydzc_resv c
+WHERE a.rm_id=b.rm_id AND b.rmsect_id=c.rmsect_id;

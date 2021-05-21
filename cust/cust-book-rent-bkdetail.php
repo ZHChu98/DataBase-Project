@@ -2,24 +2,26 @@
 $connection = mysqli_connect("localhost", "root", "");
 if (!$connection) { die("Could not connect: ".mysqli_connect_error()); }
 mysqli_select_db($connection, "ydzc_rtl");
-$bkcpy_id = $_POST["bkcpy_id"];
 $user_id = $_COOKIE["user"];
-$sql = "SELECT DISTINCT bk_isbn, bk_title, bkcpy_id FROM ydzc_cust_bk_v WHERE bkcpy_id=$bkcpy_id";
-$result = mysqli_query($connection, $sql);
+$bkcpy_id = $_POST["bkcpy_id"];
+$sql1 = "SELECT DISTINCT bkcpy_id, bk_isbn, bk_title FROM ydzc_cust_bk_v WHERE bkcpy_id=$bkcpy_id";
+$sql2 = "SELECT DISTINCT bkcpy_id, auth_fname, auth_lname FROM ydzc_cust_bk_v WHERE bkcpy_id=$bkcpy_id";
+$sql3 = "SELECT DISTINCT bkcpy_id, top_name FROM ydzc_cust_bk_v WHERE bkcpy_id=$bkcpy_id";
+$result1 = mysqli_query($connection, $sql1);
+$result2 = mysqli_query($connection, $sql2);
+$result3 = mysqli_query($connection, $sql3);
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <title> Search Result </title>
+  <title> Homepage </title>
   <link href="../bootstrap.min.css" rel="stylesheet">
   <link href="../bootstrap-table.min.css" rel="stylesheet">
   <script src="../jquery-3.6.0.min.js"></script>
   <script src="../bootstrap.min.js"></script>
   <script src="../bootstrap-table.min.js"></script>
-  <script src="../bootstrap-dropdown.js"></script>
-  <script src="../application.js"></script>
 </head>
 
 <body>
@@ -56,23 +58,32 @@ $result = mysqli_query($connection, $sql);
 
   <div class="container">
     <div class="row">
-      <form action="cust-book-borrow-confirm.php" method="post">
-        <table class="table table-striped">
-          <?php
-          $row = mysqli_fetch_assoc($result);
-          echo "<tr><td>ISBN</td><td>{$row['bk_isbn']}</td></tr>";
-          echo "<tr><td>Title</td><td>{$row['bk_title']}</td></tr>";
-          echo "<tr><td>Copy ID</td><td>{$row['bkcpy_id']}</td></tr>";
-          echo "<tr><td>Borrow Date</td><td>".date('Y-m-d', time())."</td></tr>";
-          echo "<tr><td>Expected Return Date</td><td>".date('Y-m-d', time()+30*24*60*60)."</td></tr>";
-          ?>
-        </table>
+      <table class="table table-striped">
+        <?php
+        $row1 = mysqli_fetch_assoc($result1);
+        echo "<tr><td>Book ISBN</td><td>{$row1['bk_isbn']}</td></tr>";
+        echo "<tr><td>Book Title</td><td>{$row1['bk_title']}</td></tr>";
+        echo "<tr><td>Copy ID</td><td>{$row1['bkcpy_id']}</td></tr>";
+        # author
+        $row2 = mysqli_fetch_assoc($result2);
+        echo "<tr><td>Author Name</td><td>{$row2['auth_fname']} {$row2['auth_lname']}";
+        while ($row2=mysqli_fetch_assoc($result2)) {
+          echo "<br>{$row2['auth_fname']} {$row2['auth_lname']}";
+        }
+        echo "</td></tr>";
+        # topic
+        $row3 = mysqli_fetch_assoc($result3);
+        echo "<tr><td>Topic</td><td>{$row3['top_name']}";
+        while ($row3=mysqli_fetch_assoc($result3)) {
+          echo "<br>{$row3['top_name']}";
+        }
+        echo "</td></tr>";
+        ?>
+      </table>
 
-        <div>
-          <button type="submit" class="btn btn-primary" name="bkcpy_id" value="<?php echo $bkcpy_id ?>">Comfirm</button>
-          <a type="button" class="btn btn-primary" href="cust-book.php">Back</a>
-        </div>
-      </form>
+      <div>
+        <a type="button" class="btn btn-primary" href="cust-book-rent.php">Back</a>
+      </div>
     </div>
   </div>
 
