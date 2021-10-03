@@ -1,6 +1,6 @@
 # **Public Library System**
 
-This is for NYU Tandon Course Principles of Database Systems
+Project for Principles of Database Systems
 
 ## Brief Description
 
