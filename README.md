@@ -1,15 +1,20 @@
-# **School Library System**
+# **Public Library System**
 
-## **About**
+This is for NYU Tandon Course Principles of Database Systems
 
-Design and implement a school library system for *Think and Read*. There are mainly two parts:
+## Brief Description
 
-1. Design a relational model based on the business rules, generate DDL Code and add some trigger code due to realistic usage.
+RTL (Read Think and Learn) is a public library. It serves the community by providing access to diversified resources, affordable rental services, free room reservations and various educational events. RTL intends to convert its file system based data management to sophisticated centralized database system. There are two main objectives of our project: design the relational database, and create a web-based user interface.
 
-2. Built the database on the local server through *XAMPP* and finish front-end work.
+## Project Structure
+
+1. Design a relational model based on the business rules using *Oracle DataModeler*.
+2. Generate DDL Code and add some trigger code due to realistic usage.
+3. Deploy the database on local server using *XMAPP*.
+4. Create front-end user interface using PHP and HTML.
 
 For more information, please view the reports.
 
-## **Usage**
+## Usage
 
-Double click ```other/login.php```
+Double click ```other/login.php``` to start the server.
