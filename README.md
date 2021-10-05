@@ -13,7 +13,7 @@ RTL (Read Think and Learn) is a public library. It serves the community by provi
 3. Deploy the database on local server using *XMAPP*.
 4. Create front-end user interface using PHP and HTML.
 
-For more information, please view the reports.
+For more information, please view the reports [Part1](Report_Part1.pdf) and [Part2](Report_Part2.pdf).
 
 ## Usage
 
